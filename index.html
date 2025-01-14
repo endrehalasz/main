@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szeretetben App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 10px;
+            background-color: #0da8bf;
+            color: #052036;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid black;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+            
+            font-size: 1.8rem;
+            font-style: italic;
+            text-shadow: 4px 4px 8px white;
+            font-stretch: condensed;
+            color: #052036;
+        }
+
+        .header p {
+            margin: 10px;
+            font-size: 1rem;
+            text-shadow: 2px 2px 7px white;
+        }
+
+        .main-container {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .sidebar {
+            width: 180px;
+            background-color: #d9e6fa;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        
+        .sidebar.visible {
+		    display: block;
+		}
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: none;
+        }
+        
+        .content h3 {
+            font-size: 16px;
+        }
+        
+        .content.visible {
+		    display: block;
+		}
+
+        .content-section {
+            font-size: 14px; /* Betűméret */
+            line-height: 1; /* Sorköz */
+            padding: 10px; /* Egy kis belső margó */
+            display: none;
+        }
+
+        .content-section.visible {
+            display: block;
+        }
+
+        .button-53 {
+            background-color: #0da8bf;
+            border: 1px solid #E5E7EB;
+            box-sizing: border-box;
+            color: #000055;
+            display: flex;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1rem;
+            padding: 5px 8 px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            height: 50px;
+            max-width: 180px;
+            cursor: pointer;
+            transform: rotate(-2deg);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-53:focus {
+            outline: 2px;
+        }
+
+        .button-53:after {
+            position: absolute;
+            border: 2px solid #000000;
+            bottom: 4px;
+            left: 4px;
+            width: calc(100% - 1px);
+            height: calc(100% - 1px);
+        }
+
+        .button-53:hover {
+            bottom: 2px;
+            left: 3px;
+            background-color: #0d6fbf;
+        }
+        
+        .button-53.hidden {
+            display: none;
+        }
+        
+        .button-53.disabled {
+            color: lightgray;
+        }
+        
+        .button-53.adminbutton {
+            background-color: #269398;
+            color: #000055;
+        }
+        
+        .button-53.adminbutton.disabled {
+            background-color: #269398;
+            color: lightgray;
+        }
+        
+        .button-53.adminbutton:hover {
+            bottom: 2px;
+            left: 2px;
+            background-color: #265e96;
+        }
+
+        .button-51 {
+            background-color: transparent;
+            border: 1px solid #266DB6;
+            box-sizing: border-box;
+            color: #00132C;
+            font-family: "Avenir Next LT W01 Bold",sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 2px;
+            padding: 16px 23px;
+            position: relative;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            cursor: pointer;
+            height: 30px
+        }
+
+        .button-51:hover,
+        .button-51:active {
+            outline: 0;
+        }
+
+        .button-51:hover {
+            background-color: purple;
+        }
+
+        .button-51:before {
+            background-color: #D5EDF6;
+            content: "";
+            height: calc(100% + 3px);
+            position: absolute;
+            right: -7px;
+            top: -9px;
+            transition: background-color 300ms ease-in;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .button-51:hover:before {
+            background-color: #6DCFF6;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column; /* A gombokat egymás alá rendezi */
+            gap: 3px; /* Kis távolság a gombok között */
+        }
+        
+        .profile-picture {
+            width: 1.3cm;
+            height: 1.3cm;
+            border-radius: 50%;
+            background-color: #3DD1E7;
+            display: none; /* Alapértelmezésben rejtve */
+            overflow: hidden;
+        }
+        
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .mobile-logout {
+            display: none; /* Alapértelmezésben rejtve */
+        }
+        
+        .button-edit {
+            background-color: #0da8bf;
+            border: 1px solid #E5E7EB;
+            color: #000055;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            width: auto;
+            max-width: 180px;
+        }
+        
+        .button-edit:hover {
+            background-color: #0d6fbf;
+        }
+        
+        .inputbox {
+            color: black;
+            padding: 3px;
+            font-size: 15px;
+            background-color: white; 
+            width: 220px; /* Az input mező szélessége */
+            max-width: 100%; /* Reszponzív szélesség */
+            margin-left: 80px
+        }
+
+
+        @media (min-width: 768px) {
+
+
+            .button-51 {
+                padding: 16px 32px;
+            }
+        }
+            
+        /* Mobilnézet (max. 768px szélességhez) */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: row;
+                align-items: center;
+                padding: 10px;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+        
+            .header h2 {
+                font-size: 0.9rem;
+                margin-right: 5px; /* Tolja jobbra a többi elemtől */
+
+            }
+        
+            .header p {
+                font-size: 0.7rem;
+                margin-top: 5px;
+            }
+            
+            .header #user-status {
+                margin-left: 10px;
+                flex: 1;
+            }
+            
+            .header .profile-picture {
+                display: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+                object-fit: cover;
+            }
+            
+            .header .button-51 {
+                margin-top: 10px;
+                align-self: flex-end;
+                display: none;
+            }
+            
+            .button-group {
+                display: none; /* Rejtve mobilnézetben */
+            }
+            
+            .sidebar {
+                display: block;
+                width: 35%;
+                display: none;
+            }
+            
+            .sidebar .mobile-logout {
+                display: block;
+                
+            }
+        
+            .button-53 {
+                padding: 5px 5px; /* A gombok magasságát csökkenti padding: */
+                font-size: 0.7rem;
+                line-height: 1.2rem; /* Optimalizált sor magasság */
+                width: 100%;
+            }
+        
+            .content {
+                padding: 5px;
+                font-size: 0.65rem;
+            }
+            
+        }
+        
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+            text-align: left;
+        }
+        .responsive-table thead tr {
+            background-color: #f2f2f2;
+            border-bottom: 3px solid #ddd;
+        }
+        .responsive-table th, .responsive-table td {
+            padding: 10px 10px;
+            border: 2px solid #ddd;
+        }
+        .responsive-table tr {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .responsive-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .responsive-table tr.selected {
+            background-color: #cce5ff;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2 onclick="reloadPage()" style="cursor: pointer;">Szeretetben App</h2>
+        <div class="profile-picture" id="profile-picture">
+            <img src="" alt="Profilkép" id="profile-img">
+        </div>
+        <p id="user-status"><b>Betöltés...</b></p>
+        <div class="button-group">
+            <button class="button-51" onclick="showSection('profilom')">Profilom</button>
+            <button class="button-51" onclick="logoutUser()">Kijelentkezés</button>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <button class="button-53 normalbutton" onclick="showSection('meditaciok-section')">Meditációk</button>
+            <button class="button-53 normalbutton" onclick="showSection('workshopok-section')">Workshopok</button>
+            <button class="button-53 adminbutton hidden" id="admin-users-btn" onclick="showSection('users-section')">Felhasználók</button>
+            <button class="button-53 adminbutton hidden" id="admin-meditation-btn" onclick="updateEventSection()">Szervezés</button>
+            <button class="button-53 adminbutton hidden" id="admin-proba-btn" onclick="showSection('proba-section')">Próba</button>
+            <button class="button-53 normalbutton mobile-logout" onclick="showSection('profilom')">Profilom</button>
+            <button class="button-53 normalbutton mobile-logout" onclick="logoutUser()">Kijelentkezés</button>
+        </div>
+        
+            
+        <div class="content">
+            <div id="betoltes" class="content-section visible">
+                <img src="https://www.szeretetben.hu/wp-content/uploads/2025/01/update.png" alt="Adatok betöltése..." style="width: 120px; height: 120px;">
+            </div>
+            <div id="profilom" class="content-section">
+                <h3>Profilom</h3>
+                <p>.</p>
+            </div>
+            <div id="meditaciok-section" class="content-section">
+                <h3>Meditációk</h3>
+                <p>Ez a Meditációk szekció tartalma.</p>
+            </div>
+            <div id="workshopok-section" class="content-section">
+                <h3>Workshopok</h3>
+                <p>Ez a Workshopok szekció tartalma.</p>
+            </div>
+            <div id="users-section" class="content-section">
+                <h3>Felhasználók</h3>
+                <p>Itt lesz a felhasználók kezelése.</p>
+            </div>
+            <div id="med-event-section" class="content-section">
+                <h3>Meditációk szervezése</h3>
+                <p>Itt lehet meditációkat szervezni.</p>
+            </div>
+            <div id="proba-section" class="content-section">
+                <h3>Program teszt</h3>
+                <p>Ez egy ideiglenes rész a program teszteléséhez.</p>
+            </div>
+            <div id="profile-edit-section" class="content-section">
+                <h3>Profil szerkesztése</h3>
+                <p>.</p>
+            </div>
+            <div id="ujmed-section" class="content-section">
+                <h3>Új meditáció létehozása</h3>
+                <p>.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://endrehalasz.github.io/main/szeretetben-app.js"></script>
+</body>
+</html>
