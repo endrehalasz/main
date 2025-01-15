@@ -631,7 +631,12 @@ async function createNewMed() {
     // előtte ellenőrzést végez és visszakérdez
 async function deleteMed() {
     if (medTable_selectedRow_medId) {
-        alert("meditáció törlése MED_ID "+ medTable_selectedRow_medId);
+        //alert("meditáció törlése MED_ID "+ medTable_selectedRow_medId);
+        const confirmation = confirm(`Biztosan törlöd ezt a meditációt?`);
+        if (!confirmation) {
+            //alert("A törlés megszakítva.");
+            return; // Kilép a függvényből, ha a felhasználó a "Nem" gombra kattint.
+        }
         const torolMeditacio = {
             MED_ID: medTable_selectedRow_medId,
             modositotta: `${myUser.vezeteknev} ${myUser.keresztnev}` 
