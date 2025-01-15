@@ -494,8 +494,7 @@ async function fetchMedDataArray() {
 
 // Frissíti-betölti az szervezett események listáját
 async function updateEventSection() {
-    await showSection("betoltes");
-    await fetchMedDataArray();
+    
     document.getElementById("med-event-section").innerHTML = `
         <h3>Meditációk szervezése</h3>
         <table id="medTable" class="responsive-table">
@@ -577,6 +576,12 @@ async function updateEventSection() {
     await showSection('med-event-section');
 }
 
+async function readMedList() {
+    await showSection("betoltes");
+    await fetchMedDataArray();
+    await updateEventSection();
+}
+
 // betölti az új meditáció létrehozása section-t
 async function loadUjMedSection() {
     const today = new Date();
@@ -637,6 +642,7 @@ async function deleteMed() {
             //alert("A törlés megszakítva.");
             return; // Kilép a függvényből, ha a felhasználó a "Nem" gombra kattint.
         }
+        await showSection("betoltes");
         const torolMeditacio = {
             MED_ID: medTable_selectedRow_medId,
             modositotta: `${myUser.vezeteknev} ${myUser.keresztnev}` 
@@ -645,15 +651,25 @@ async function deleteMed() {
         console.log("Meditáció törlése...")
         try {
             const apiResponse = await apiCallPost(apiUrls.MedData, prepareParamsForURL({parancs: "meditacio_torlese", data: torolMeditacio}));
-            console.log("createNewMed – API response: ", apiResponse.ok, apiResponse.data);
+            console.log("deleteMed – API response: ", apiResponse.ok, apiResponse.data);
             if(!apiResponse.ok) { throw new Error("nemoké") }
             // ide csak akkor jutunk, ha rendesen lefutott
-            console.log("createNewMed – Törlés lefutott!");
+            console.log("deleteMed – Törlés lefutott!");
             alert("Rendben! Töröltem a meditációt!");
+            const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
+            // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
+            if (!Array.isArray(parsedData)) {
+                throw new Error("deleteMed – A JSON string nem egy tömböt tartalmaz");
+            }
+            // Globális myMed tömb feltöltése az adatokkal
+            myMed.length = 0; // Esetlegesen meglévő elemek törlése
+            myMed.push(...parsedData);
+            console.log("Meditációs lista áthozva: ", myMed);
             await updateEventSection();
         } catch (error) {
             alert("Sajnálom, Valamilyen hiba történt a meditáció törlése közben.");
             console.error("createNewMed – API válasz nem jött át megfelelően", response.error);
         }
+        await updateEventSection();
     }
 }
