@@ -32,6 +32,7 @@ let medTable_selectedRow_medId = null; // meditációk táblázat kiválasztott 
 // USER_ID lekérése és adatlekérés indítása
 const userId = getQueryParam('USER_ID');
 const fb_uid = getQueryParam('fb_uid');
+console.log(userId);
 if (userId) {
     // user betöltése a felületre
     loadUser();
