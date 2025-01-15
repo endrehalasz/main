@@ -667,7 +667,7 @@ async function deleteMed() {
             await updateEventSection();
         } catch (error) {
             alert("Sajnálom, Valamilyen hiba történt a meditáció törlése közben.");
-            console.error("createNewMed – API válasz nem jött át megfelelően", response.error);
+            console.error("createNewMed – API válasz nem jött át megfelelően", error);
         }
         await updateEventSection();
     }
