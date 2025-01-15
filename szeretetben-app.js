@@ -38,7 +38,7 @@ if (userId) {
     loadUser();
 } else {
     console.error('USER_ID paraméter hiányzik a fejlécben.');
-    window.location.href = `https://szeretetben.hu/bejelentkezes`;
+    //window.location.href = `https://szeretetben.hu/bejelentkezes`;
 }
 
 /*
