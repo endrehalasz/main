@@ -17,7 +17,7 @@ const auth = fb_app.auth();
 const apiUrls = {
     getUserData: "https://script.google.com/macros/s/AKfycbzGxj5sUlKZVZPIghphcTCjmY5Uz8nP3oszcJnXrUJyppxb46YEPhXLm14XtsofRGG7Kg/exec",
     saveUserData: "https://script.google.com/macros/s/AKfycbxReeHmqCLSdpqcjsHsfUIbtpeJwuyMG8syGfWXZJW_3zydaXtKUSw7gtiqWrfG2xOrBQ/exec",
-    MedData: "https://script.google.com/macros/s/AKfycbwf-pA2yWqEb7tvIuQwGkGspmiG03-i6QZGDo_uwAtydnTP0cwxP_FppqjGhOLqYDQL/exec"
+    MedData: "https://script.google.com/macros/s/AKfycbzcBP4IoqeJI2PIM8mYINsWtuKjeGiNgZp8M907tR39uVNt5QAKXeUNj0KmTE-JI1BA4g/exec"
 };
     // user aktuális adatai objektum – globális
     // később úgyis megkapja a kulcsokat!
