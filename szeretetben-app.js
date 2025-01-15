@@ -38,7 +38,7 @@ if (userId) {
     loadUser();
 } else {
     console.error('USER_ID paraméter hiányzik a fejlécben.');
-    //window.location.href = `https://szeretetben.hu/bejelentkezes`;
+    window.location.href = `https://szeretetben.hu/bejelentkezes`;
 }
 
 /*
@@ -210,8 +210,8 @@ async function loadUser() {
         // Nem szabad belépni, kijelentkezik és kidob
         console.log("Sikertelen autentikáció");
         alert("Kérlek jelentkezz be újra!");
-        // await logoutUser();
-        // window.location.href = `https://szeretetben.hu/bejelentkezes`;
+        await logoutUser();
+        window.location.href = `https://szeretetben.hu/bejelentkezes`;
     }
 }
 
@@ -313,7 +313,7 @@ async function logoutUser() {
     try {
         console.log("A User kijelentkezik");
         await firebase.auth().signOut();
-        //window.location.href = "https://www.szeretetben.hu/bejelentkezes";
+        window.location.href = "https://www.szeretetben.hu/bejelentkezes";
         console.log("Oké! Ki is vagy jelentkezve!");
     } catch (error) {
         console.error('Hiba a kijelentkezés során:', error);
@@ -459,10 +459,11 @@ function finalDeleteProfile() {
         // Firebase minden authentikációs mód törlése
             // Most már újra belépés után
         auth.currentUser.delete();
+        //window.location.href = `https://szeretetben.hu/bejelentkezes`;
     } else {
         console.log("Felhasználó mégsem törli a profilját");
     }
-    // window.location.href = `https://szeretetben.hu/bejelentkezes`;
+    
 }
 
 // lekéri a meditációs listát a google sheet-ből
