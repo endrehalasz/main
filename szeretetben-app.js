@@ -313,7 +313,7 @@ async function logoutUser() {
     try {
         console.log("A User kijelentkezik");
         await firebase.auth().signOut();
-        window.location.href = "https://www.szeretetben.hu/bejelentkezes";
+        //window.location.href = "https://www.szeretetben.hu/bejelentkezes";
         console.log("Oké! Ki is vagy jelentkezve!");
     } catch (error) {
         console.error('Hiba a kijelentkezés során:', error);
