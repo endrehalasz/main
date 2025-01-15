@@ -209,8 +209,8 @@ async function loadUser() {
         // Nem szabad belépni, kijelentkezik és kidob
         console.log("Sikertelen autentikáció");
         alert("Kérlek jelentkezz be újra!");
-        await logoutUser();
-        window.location.href = `https://szeretetben.hu/bejelentkezes`;
+        // await logoutUser();
+        // window.location.href = `https://szeretetben.hu/bejelentkezes`;
     }
 }
 
