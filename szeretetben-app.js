@@ -494,7 +494,6 @@ async function fetchMedDataArray() {
 
 // Frissíti-betölti az szervezett események listáját
 async function updateEventSection() {
-    
     document.getElementById("med-event-section").innerHTML = `
         <h3>Meditációk szervezése</h3>
         <table id="medTable" class="responsive-table">
