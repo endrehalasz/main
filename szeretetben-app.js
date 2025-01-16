@@ -523,8 +523,8 @@ async function updateEventSection() {
         </tbody>
     </table>
     <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
-    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 16px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
-        <option value="" selected disabled>Válassz egy állapotot...</option>
+    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 18px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
+        <option value="" selected disabled>Állapot</option>
         <option value="cimre_var">Címre vár</option>
         <option value="teasert_var">Teaserre vár</option>
         <option value="uzenet_var">Üzenetre vár</option>
