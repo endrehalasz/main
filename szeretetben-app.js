@@ -523,8 +523,7 @@ async function updateEventSection() {
         </tbody>
     </table>
     <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
-    <button class="button-edit row-selected" style="display: none;" onclick="handleMedAllapot()">Állapot</button>
-    <select id="allapot-lista" class="row-selected" style="display: none; width: 100%; margin-top: 5px;">
+    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 16px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
         <option value="" selected disabled>Válassz egy állapotot...</option>
         <option value="cimre_var">Címre vár</option>
         <option value="teasert_var">Teaserre vár</option>
@@ -675,9 +674,6 @@ async function deleteMed() {
     if (medTable_selectedRow_medId) {
         //alert("meditáció törlése MED_ID "+ medTable_selectedRow_medId);
         let uzenetSzoveg = "Biztosan törlöd ezt a meditációt?"
-        console.log(medTable_selectedRow_medId);
-        console.log(myMed[0].MED_ID);
-        console.log(myMed[0].MED_ID == String(medTable_selectedRow_medId));
         // Kiválasztott meditáció keresése az ID alapján
         const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
         // Jelentkezők összeszámolása
