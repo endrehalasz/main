@@ -547,7 +547,7 @@ async function updateEventSection() {
     
     
     <div id="medInfo" style="display: none; margin-top: 10px;">
-        <label id="mouseOverLabel">MED_ID: </label>
+        <label id="mouseOverMedIdLabel">MED_ID: </label>
         <label id="mouseOverLabel"></label>
     </div>
     `;
