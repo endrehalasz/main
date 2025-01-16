@@ -574,12 +574,18 @@ async function updateEventSection() {
                 medTable_selectedRow_medId = selected_medId;
                 rowSelectedButtons.forEach(button => button.style.display = "inline-block");
                 // Kiválasztott meditáció adatai
-                const selectedMeditacio = myMed.find(item => item.MED_ID === String(selected_medId));
+                const selectedMeditacio = myMed.find(item => item.MED_ID == String(selected_medId));
                 if (selectedMeditacio) {
                     const jelentkezok = selectedMeditacio.jelentkezok || [];
                     const jelentkezett = jelentkezok.filter(j => j.jelentkezes_state === "jelentkezett");
                     const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
                     const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
+                    
+                    console.log(selectedMeditacio);
+                    console.log(jelentkezok);
+                    console.log(jelentkezett);
+                    console.log(varolistan);
+                    console.log(lemondta);
                     // Jelentkezett listázása
                     let labelContent = "<strong>Jelentkezett:</strong><br>";
                     labelContent += jelentkezett.length > 0 
