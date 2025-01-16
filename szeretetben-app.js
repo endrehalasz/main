@@ -677,7 +677,7 @@ async function deleteMed() {
         let uzenetSzoveg = "Biztosan törlöd ezt a meditációt?"
         console.log(medTable_selectedRow_medId);
         // Kiválasztott meditáció keresése az ID alapján
-        const selectedMeditacio = myMed.find(item => item.MED_ID === String(medTable_selectedRow_medId));
+        const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
         // Jelentkezők összeszámolása
         const osszesJelentkezo = (selectedMeditacio.jelentkezett || 0) + (selectedMeditacio.varolistan || 0);
         if (osszesJelentkezo > 0) uzenetSzoveg = "A kiválasztott meditációra már jelentkezett ${osszesJelentkezo} fő. " + uzenetSzoveg;
