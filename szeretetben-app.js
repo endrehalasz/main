@@ -610,7 +610,7 @@ async function handleMedAllapot() {
     case "elmult":
         break;
     case "torolt":
-        deleteMed();
+        await deleteMed();
         break;
     }
     document.getElementById("allapot-lista").selectedIndex = 0;
