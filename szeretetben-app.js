@@ -524,6 +524,21 @@ async function updateEventSection() {
     </table>
     <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
     <button class="button-edit row-selected" style="display: none;" onclick="deleteMed()">Med törlése</button>
+
+    <div style="margin-top: 10px;">
+        <button class="button-edit row-selected" style="display: none;" onclick="handleMedAllapot()">Állapot</button>
+        <select id="allapot-lista" class="row-selected" style="display: none; width: 100%; margin-top: 5px;">
+            <option value="" selected disabled>Válassz egy állapotot...</option>
+            <option value="cimre_var">Címre vár</option>
+            <option value="teasert_var">Teaserre vár</option>
+            <option value="uzenet_var">Üzenetre vár</option>
+            <option value="kikuldheto">Kiküldhető</option>
+            <option value="nyitva">Jelentkezés nyitva</option>
+            <option value="elmult">Elmúlt</option>
+            <option value="torolt">Törlés</option>
+        </select>
+    </div>
+    
     <div id="medInfo" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel">MED_ID: </label>
     </div>
@@ -573,6 +588,32 @@ async function updateEventSection() {
         }
     });
     await showSection('med-event-section');
+}
+
+async function handleMedAllapot() {
+    const allapotLista = document.getElementById("allapot-lista");
+    const selectedValue = allapotLista.value;
+    if (!selectedValue) {
+        return;
+    }
+    switch (selectedValue) {
+    case "cimre_var"
+        break;
+    case "teasert_var"
+        break;
+    case "uzenet_var"
+        break;
+    case "kikuldheto"
+        break;
+    case "nyitva"
+        break;
+    case "elmult"
+        break;
+    case "torolt"
+        deleteMed();
+        break;
+    }
+    document.getElementById("allapot-lista").selectedIndex = 0;
 }
 
 async function readMedList() {
