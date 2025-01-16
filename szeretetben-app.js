@@ -523,21 +523,18 @@ async function updateEventSection() {
         </tbody>
     </table>
     <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
-    <button class="button-edit row-selected" style="display: none;" onclick="deleteMed()">Med törlése</button>
-
-    <div style="margin-top: 10px;">
-        <button class="button-edit row-selected" style="display: none;" onclick="handleMedAllapot()">Állapot</button>
-        <select id="allapot-lista" class="row-selected" style="display: none; width: 100%; margin-top: 5px;">
-            <option value="" selected disabled>Válassz egy állapotot...</option>
-            <option value="cimre_var">Címre vár</option>
-            <option value="teasert_var">Teaserre vár</option>
-            <option value="uzenet_var">Üzenetre vár</option>
-            <option value="kikuldheto">Kiküldhető</option>
-            <option value="nyitva">Jelentkezés nyitva</option>
-            <option value="elmult">Elmúlt</option>
-            <option value="torolt">Törlés</option>
-        </select>
-    </div>
+    <button class="button-edit row-selected" style="display: none;" onclick="handleMedAllapot()">Állapot</button>
+    <select id="allapot-lista" class="row-selected" style="display: none; width: 100%; margin-top: 5px;">
+        <option value="" selected disabled>Válassz egy állapotot...</option>
+        <option value="cimre_var">Címre vár</option>
+        <option value="teasert_var">Teaserre vár</option>
+        <option value="uzenet_var">Üzenetre vár</option>
+        <option value="kikuldheto">Kiküldhető</option>
+        <option value="nyitva">Jelentkezés nyitva</option>
+        <option value="elmult">Elmúlt</option>
+        <option value="torolt">Törlés</option>
+    </select>
+    
     
     <div id="medInfo" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel">MED_ID: </label>
@@ -677,7 +674,13 @@ async function createNewMed() {
 async function deleteMed() {
     if (medTable_selectedRow_medId) {
         //alert("meditáció törlése MED_ID "+ medTable_selectedRow_medId);
-        const confirmation = confirm(`Biztosan törlöd ezt a meditációt?`);
+        let uzenetSzoveg = "Biztosan törlöd ezt a meditációt?"
+        // Kiválasztott meditáció keresése az ID alapján
+        const selectedMeditacio = myMed.find(item => item.MED_ID === medTable_selectedRow_medId);
+        // Jelentkezők összeszámolása
+        const osszesJelentkezo = (selectedMeditacio.jelentkezett || 0) + (selectedMeditacio.varolistan || 0);
+        if (osszesJelentkezo > 0) uzenetSzoveg = "A kiválasztott meditációra már jelentkezett ${osszesJelentkezo} fő. " + uzenetSzoveg;
+        const confirmation = confirm(uzenetSzoveg);
         if (!confirmation) {
             //alert("A törlés megszakítva.");
             return; // Kilép a függvényből, ha a felhasználó a "Nem" gombra kattint.
