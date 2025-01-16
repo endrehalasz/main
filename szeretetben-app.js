@@ -28,6 +28,17 @@ let admin = false;  // true, ha admin lépett be
 let myMed = [];
 let medTable_selectedRow_medId = null; // meditációk táblázat kiválasztott sorának MED_ID-je
 
+const stateMapping = {
+    "cimre_var": "Címre vár",
+    "teasert_var": "Teaserre vár",
+    "uzenet_var": "Üzenetre vár",
+    "kikuldheto": "Kiküldhető",
+    "nyitva": "Jelentkezés nyitva",
+    "elmult": "Elmúlt",
+    "torolt": "Törölve"
+};
+
+
 // **** RUN STARTS HERE ****
 // USER_ID lekérése és adatlekérés indítása
 const userId = getQueryParam('USER_ID');
@@ -517,7 +528,7 @@ async function updateEventSection() {
                     <td>${item.max_ember}</td>
                     <td>${item.jelentkezett}</td>
                     <td>${item.varolistan}</td>
-                    <td>${item.state}</td>
+                    <td>${stateMapping[item.state] || "?"}</td>
                 </tr>
             `).join('')}
         </tbody>
