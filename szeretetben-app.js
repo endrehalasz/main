@@ -597,19 +597,19 @@ async function handleMedAllapot() {
         return;
     }
     switch (selectedValue) {
-    case "cimre_var"
+    case "cimre_var":
         break;
-    case "teasert_var"
+    case "teasert_var":
         break;
-    case "uzenet_var"
+    case "uzenet_var":
         break;
-    case "kikuldheto"
+    case "kikuldheto":
         break;
-    case "nyitva"
+    case "nyitva":
         break;
-    case "elmult"
+    case "elmult":
         break;
-    case "torolt"
+    case "torolt":
         deleteMed();
         break;
     }
