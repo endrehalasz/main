@@ -573,7 +573,7 @@ async function updateEventSection() {
             // Az azonosító kiolvasása a mouseover sorból
             label.textContent = `MED_ID: ${mouseover_medId}`;
             medInfoDiv.style.display = "block";
-            console.log(mouseover_medId);
+            // console.log(mouseover_medId);
         }
     });
     table.addEventListener("mouseout", event => {
@@ -675,6 +675,7 @@ async function deleteMed() {
     if (medTable_selectedRow_medId) {
         //alert("meditáció törlése MED_ID "+ medTable_selectedRow_medId);
         let uzenetSzoveg = "Biztosan törlöd ezt a meditációt?"
+        console.log(medTable_selectedRow_medId);
         // Kiválasztott meditáció keresése az ID alapján
         const selectedMeditacio = myMed.find(item => item.MED_ID === medTable_selectedRow_medId);
         // Jelentkezők összeszámolása
