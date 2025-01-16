@@ -682,7 +682,7 @@ async function deleteMed() {
         const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
         // Jelentkezők összeszámolása
         const osszesJelentkezo = (selectedMeditacio.jelentkezett || 0) + (selectedMeditacio.varolistan || 0);
-        if (osszesJelentkezo > 0) uzenetSzoveg = "A kiválasztott meditációra már jelentkezett ${osszesJelentkezo} fő. " + uzenetSzoveg;
+        if (osszesJelentkezo > 0) uzenetSzoveg = "A kiválasztott meditációra már jelentkezett " + osszesJelentkezo + " fő. " + uzenetSzoveg;
         const confirmation = confirm(uzenetSzoveg);
         if (!confirmation) {
             //alert("A törlés megszakítva.");
