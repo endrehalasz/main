@@ -547,15 +547,18 @@ async function updateEventSection() {
     
     
     <div id="medInfo" style="display: none; margin-top: 10px;">
-        <label id="mouseOverMedIdLabel">MED_ID: </label>
+        <label id="mouseOverLabel">MED_ID: </label>
+        <label id="mouseOverLabel"></label>
     </div>
     `;
+    
     // Táblázat sorok interaktív kijelölése
     const table = document.getElementById("medTable");
     table.addEventListener("click", event => {
         const rows = Array.from(table.querySelectorAll("tbody tr"));
         const targetRow = event.target.closest("tr");
         const rowSelectedButtons = document.querySelectorAll(".row-selected");
+        const label = document.getElementById("mouseOverLabel"); // A cél label
         // Az azonosító kiolvasása a kiválasztott sorból
         const selected_medId = targetRow.getAttribute("data-id");
         if (targetRow && selected_medId) {
@@ -564,16 +567,41 @@ async function updateEventSection() {
                 targetRow.classList.remove("selected");
                 medTable_selectedRow_medId = null;
                 rowSelectedButtons.forEach(button => button.style.display = "none");
+                label.innerHTML = ""; // Töröljük a label tartalmát
             } else {
                 rows.forEach(row => row.classList.remove("selected"));
                 targetRow.classList.add("selected");
-                if (selected_medId) {
-                    medTable_selectedRow_medId = selected_medId;
-                    rowSelectedButtons.forEach(button => button.style.display = "inline-block");
+                medTable_selectedRow_medId = selected_medId;
+                rowSelectedButtons.forEach(button => button.style.display = "inline-block");
+                // Kiválasztott meditáció adatai
+                const selectedMeditacio = myMed.find(item => item.MED_ID === String(selected_medId));
+                if (selectedMeditacio) {
+                    const jelentkezok = selectedMeditacio.jelentkezok || [];
+                    const jelentkezett = jelentkezok.filter(j => j.jelentkezes_state === "jelentkezett");
+                    const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
+                    const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
+                    // Jelentkezett listázása
+                    let labelContent = "<strong>Jelentkezett:</strong><br>";
+                    labelContent += jelentkezett.length > 0 
+                        ? jelentkezett.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
+                        : "Üres";
+                    // Várólistás listázása
+                    labelContent += "<br><br><strong>Várólistán:</strong><br>";
+                    labelContent += varolistan.length > 0 
+                        ? varolistan.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
+                        : "Üres";
+                    // Lemondta listázása
+                    labelContent += "<br><br><strong>Lemondta:</strong><br>";
+                    labelContent += lemondta.length > 0 
+                        ? lemondta.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
+                        : "Senki";
+                    // Label frissítése
+                    label.innerHTML = labelContent;
                 }
             }
         }
     });
+    
     table.addEventListener("mouseover", event => {
         const label = document.getElementById("mouseOverMedIdLabel");
         const targetRow = event.target.closest("tr");
