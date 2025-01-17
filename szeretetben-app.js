@@ -549,6 +549,19 @@ async function updateEventSection() {
     <div id="medInfo" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel">MED_ID: </label>
         <label id="mouseOverLabel"></label>
+        <div id="medInfo" style="display: none; margin-top: 10px;">
+            <table id="jelentkezokTable" class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>Visszajelzés</th>
+                    </tr>
+                </thead>
+                <tbody id="jelentkezokBody">
+                </tbody>
+            </table>
+        </div>
+
     </div>
     `;
     
@@ -587,7 +600,82 @@ async function updateEventSection() {
                     console.log(varolistan);
                     console.log(lemondta);
                     // Jelentkezett listázása
-                    let labelContent = "<strong>Jelentkezett:</strong><br>";
+                    const tableBody = document.getElementById("jelentkezokBody");
+                    const medInfoDiv = document.getElementById("medInfo");
+                    
+                    // Töröljük a meglévő tartalmat
+                    tableBody.innerHTML = "";
+                    
+                    // Ha nincs kijelölt sor, elrejtjük a táblázatot
+                    if (!targetRow || !selected_medId) {
+                        medInfoDiv.style.display = "none";
+                        return;
+                    }
+                    
+                    // Ha van kijelölt meditáció
+                    medInfoDiv.style.display = "block";
+                    
+                    // Jelentkezett szakasz
+                    if (jelentkezett.length > 0) {
+                        const headerRow = document.createElement("tr");
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
+                        tableBody.appendChild(headerRow);
+                    
+                        jelentkezett.forEach(j => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${j.vezeteknev} ${j.keresztnev}</td>
+                                <td>${j.response_state || "Nincs válasz"}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        const emptyRow = document.createElement("tr");
+                        emptyRow.innerHTML = `<td colspan="2">Üres</td>`;
+                        tableBody.appendChild(emptyRow);
+                    }
+                    
+                    // Várólistás szakasz
+                    if (varolistan.length > 0) {
+                        const headerRow = document.createElement("tr");
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
+                        tableBody.appendChild(headerRow);
+                    
+                        varolistan.forEach(j => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${j.vezeteknev} ${j.keresztnev}</td>
+                                <td>${j.response_state || "Nincs válasz"}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        const emptyRow = document.createElement("tr");
+                        emptyRow.innerHTML = `<td colspan="2">Üres</td>`;
+                        tableBody.appendChild(emptyRow);
+                    }
+                    
+                    // Lemondta szakasz
+                    if (lemondta.length > 0) {
+                        const headerRow = document.createElement("tr");
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
+                        tableBody.appendChild(headerRow);
+                    
+                        lemondta.forEach(j => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${j.vezeteknev} ${j.keresztnev}</td>
+                                <td>${j.response_state || "Nincs válasz"}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    } else {
+                        const emptyRow = document.createElement("tr");
+                        emptyRow.innerHTML = `<td colspan="2">Senki</td>`;
+                        tableBody.appendChild(emptyRow);
+                    }
+
+                    /* let labelContent = "<strong>Jelentkezett:</strong><br>";
                     labelContent += jelentkezett.length > 0 
                         ? jelentkezett.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
                         : "Üres";
@@ -602,7 +690,7 @@ async function updateEventSection() {
                         ? lemondta.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
                         : "Senki";
                     // Label frissítése
-                    label.innerHTML = labelContent;
+                    label.innerHTML = labelContent;*/
                 }
             }
         }
