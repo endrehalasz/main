@@ -43,9 +43,10 @@ const stateMapping = {
 // USER_ID lekérése és adatlekérés indítása
 const userId = getQueryParam('USER_ID');
 const fb_uid = getQueryParam('fb_uid');
-console.log(userId);
+//console.log(userId);
 if (userId) {
     // user betöltése a felületre
+    console.log("Hello User, I can see you!");
     loadUser();
 } else {
     console.error('USER_ID paraméter hiányzik a fejlécben.');
@@ -116,11 +117,11 @@ function getQueryParam(param) {
 // API hívását intézi ez a függvény GET móddal
 async function apiCallGet(my_api, my_headerString) {
     const mostani_apiurl = my_api + "?" + my_headerString;
-    console.log("GET apiCall API hívás indítása", mostani_apiurl);
+    // console.log("GET apiCall API hívás indítása", mostani_apiurl);
     try {
         const response = await fetch(mostani_apiurl);
         const data = await response.json();
-        console.log("apiCall API válasz:", response.ok, data);
+        // console.log("apiCall API válasz:", response.ok, data);
         return {ok: response.ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
     } catch (error) {
         alert("GET apiCall hiba – sajnos");
@@ -133,7 +134,7 @@ async function apiCallGet(my_api, my_headerString) {
     // my_api=api url-je; my_param=url-parameter-string
 async function apiCallPost(my_api, my_param) {
     const mostani_apiurl = my_api;
-    console.log("POST apiCall API hívás indítása", mostani_apiurl);
+    // console.log("POST apiCall API hívás indítása", mostani_apiurl);
     try {
         // a google api csak a application/x-www-form-urlencoded formátumot támogatja POST hívásban
         const response = await fetch(mostani_apiurl, {
@@ -143,7 +144,7 @@ async function apiCallPost(my_api, my_param) {
         });
         
         const data = await response.json();
-        console.log("apiCall API válasz:", response.ok, data);
+        // console.log("apiCall API válasz:", response.ok, data);
         return {ok: response.ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
     } catch (error) {
         alert("POST apiCall hiba – sajnos");
@@ -184,7 +185,7 @@ async function loadUser() {
     // Autentikáció és személyes fejléc betöltése
     if (myUser.Firebase_UID == fb_uid && myUser.login_type != "") {
         // Be szabad lépni
-        console.log("Firebase uid összevetés egyezik");
+        console.log("Authentication OK");
         // Név megjelenítése a fejlécben
         document.getElementById('user-status').textContent = `${myUser.teljes_nev}`;
         // Profilkép megjelenítése a fejlécben, ha van
@@ -427,13 +428,13 @@ async function editUserData() {
 // menti a user adatokat a myUser array-ből a google sheet-be
 async function saveUserData() {
     // Adatok saveUserData API-n keresztüli mentése
-    console.log("Új user adatok mentése...")
+    // console.log("Új user adatok mentése...")
     try {
         const apiResponse = await apiCallPost(apiUrls.saveUserData, prepareParamsForURL({USER_ID: myUser.USER_ID, data: myUser}));
-        console.log("saveUserData – API response: ", apiResponse.ok, apiResponse.data);
+        // console.log("saveUserData – API response: ", apiResponse.ok, apiResponse.data);
         if(!apiResponse.ok) { throw new error("nemoké") }
         // ide csak akkor jutunk, ha rendesen lefutott
-        console.log("saveUserData – Mentés lefutott!");
+        // console.log("saveUserData – Mentés lefutott!");
     } catch {
         alert("Sajnálom, Valamilyen hiba történt az adatok mentése közben.");
         console.error("saveUserData – API válasz nem jött át megfelelően", response.error);
@@ -484,9 +485,9 @@ async function fetchMedDataArray() {
     const headerString = "parancs=readMedList";
     try {
         const apiResponse = await apiCallGet(apiUrls.MedData, headerString);
-        console.log("API response.ok: ", apiResponse.ok);
-        console.log("API adatválasz: ", apiResponse.data);
-        console.log(apiResponse.ok);
+        // console.log("API response.ok: ", apiResponse.ok);
+        // console.log("API adatválasz: ", apiResponse.data);
+        // console.log(apiResponse.ok);
         if(!apiResponse.ok) { throw new error("nemoké") }
         // betesszük a lekért user datokat a globális myMed array-be
         // csak előbb vissza kell alakítani a JSON string-et
@@ -497,7 +498,7 @@ async function fetchMedDataArray() {
         // Globális myMed tömb feltöltése az adatokkal
         myMed.length = 0; // Esetlegesen meglévő elemek törlése
         myMed.push(...parsedData);
-        console.log("Meditációs lista áthozva: ", myMed);
+        // console.log("Meditációs lista áthozva: ", myMed);
     } catch {
         console.error("fetchMedDataArray – API válasz nem jött át megfelelően");
     }    
@@ -666,23 +667,6 @@ async function updateEventSection() {
                         emptyRow.innerHTML = `<td colspan="2">Senki</td>`;
                         tableBody.appendChild(emptyRow);
                     }
-
-                    /* let labelContent = "<strong>Jelentkezett:</strong><br>";
-                    labelContent += jelentkezett.length > 0 
-                        ? jelentkezett.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
-                        : "Üres";
-                    // Várólistás listázása
-                    labelContent += "<br><br><strong>Várólistán:</strong><br>";
-                    labelContent += varolistan.length > 0 
-                        ? varolistan.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
-                        : "Üres";
-                    // Lemondta listázása
-                    labelContent += "<br><br><strong>Lemondta:</strong><br>";
-                    labelContent += lemondta.length > 0 
-                        ? lemondta.map(j => `${j.vezeteknev} ${j.keresztnev} (${j.response_state || "Nincs válasz"})`).join("<br>") 
-                        : "Senki";
-                    // Label frissítése
-                    label.innerHTML = labelContent;*/
                 }
             }
         }
