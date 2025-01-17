@@ -19,7 +19,7 @@ body {
     background-color: red;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.9);
     background-color: yellow;
   }
 }
