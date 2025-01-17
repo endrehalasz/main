@@ -608,7 +608,7 @@ async function updateEventSection() {
                     medInfoDiv.style.display = "block";
                     console.log("Táblázat megjelenítése..");
                     // Jelentkezett szakasz
-                    const headerRow = document.createElement("tr");
+                    let headerRow = document.createElement("tr");
                     headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
                     tableBody.appendChild(headerRow);
                     if (jelentkezett.length > 0) {
@@ -627,7 +627,7 @@ async function updateEventSection() {
                     }
                     
                     // Várólistás szakasz
-                    const headerRow = document.createElement("tr");
+                    headerRow = document.createElement("tr");
                     headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
                     tableBody.appendChild(headerRow);
                     if (varolistan.length > 0) {
@@ -646,7 +646,7 @@ async function updateEventSection() {
                     }
                     
                     // Lemondta szakasz
-                    const headerRow = document.createElement("tr");
+                    headerRow = document.createElement("tr");
                     headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
                     tableBody.appendChild(headerRow);
                     if (lemondta.length > 0) {
