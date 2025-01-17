@@ -595,11 +595,12 @@ async function updateEventSection() {
                     const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
                     const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
                     
-                    console.log(selectedMeditacio);
+                    /* console.log(selectedMeditacio);
                     console.log(jelentkezok);
                     console.log(jelentkezett);
                     console.log(varolistan);
-                    console.log(lemondta);
+                    console.log(lemondta); */
+                    
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     const medInfoDiv = document.getElementById("medInfo");
@@ -622,7 +623,7 @@ async function updateEventSection() {
                         });
                     } else {
                         const emptyRow = document.createElement("tr");
-                        emptyRow.innerHTML = `<td colspan="2">Üres</td>`;
+                        emptyRow.innerHTML = `<td colspan="2">még senki</td>`;
                         tableBody.appendChild(emptyRow);
                     }
                     
@@ -641,7 +642,7 @@ async function updateEventSection() {
                         });
                     } else {
                         const emptyRow = document.createElement("tr");
-                        emptyRow.innerHTML = `<td colspan="2">Üres</td>`;
+                        emptyRow.innerHTML = `<td colspan="2">még senki</td>`;
                         tableBody.appendChild(emptyRow);
                     }
                     
@@ -660,7 +661,7 @@ async function updateEventSection() {
                         });
                     } else {
                         const emptyRow = document.createElement("tr");
-                        emptyRow.innerHTML = `<td colspan="2">Senki</td>`;
+                        emptyRow.innerHTML = `<td colspan="2">senki</td>`;
                         tableBody.appendChild(emptyRow);
                     }
                 }
