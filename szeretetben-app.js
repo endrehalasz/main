@@ -602,25 +602,16 @@ async function updateEventSection() {
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     const medInfoDiv = document.getElementById("medInfo");
-                    
                     // Töröljük a meglévő tartalmat
                     tableBody.innerHTML = "";
-                    
-                    // Ha nincs kijelölt sor, elrejtjük a táblázatot
-                    if (!targetRow || !selected_medId) {
-                        medInfoDiv.style.display = "none";
-                        return;
-                    }
-                    
-                    // Ha van kijelölt meditáció
                     medInfoDiv.style.display = "block";
-                    
+                    console.log("Táblázat megjelenítése..");
                     // Jelentkezett szakasz
                     if (jelentkezett.length > 0) {
                         const headerRow = document.createElement("tr");
                         headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
                         tableBody.appendChild(headerRow);
-                    
+                        console.log("Jelentkezett sor hozzáadva");
                         jelentkezett.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
@@ -628,6 +619,7 @@ async function updateEventSection() {
                                 <td>${j.response_state || "Nincs válasz"}</td>
                             `;
                             tableBody.appendChild(row);
+                            console.log("Jelentkezők listájának hozzáadása");
                         });
                     } else {
                         const emptyRow = document.createElement("tr");
