@@ -608,11 +608,10 @@ async function updateEventSection() {
                     medInfoDiv.style.display = "block";
                     console.log("Táblázat megjelenítése..");
                     // Jelentkezett szakasz
+                    const headerRow = document.createElement("tr");
+                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
+                    tableBody.appendChild(headerRow);
                     if (jelentkezett.length > 0) {
-                        const headerRow = document.createElement("tr");
-                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
-                        tableBody.appendChild(headerRow);
-                        console.log("Jelentkezett sor hozzáadva");
                         jelentkezett.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
@@ -620,7 +619,6 @@ async function updateEventSection() {
                                 <td>${j.response_state || "Nincs válasz"}</td>
                             `;
                             tableBody.appendChild(row);
-                            console.log("Jelentkezők listájának hozzáadása");
                         });
                     } else {
                         const emptyRow = document.createElement("tr");
@@ -629,11 +627,10 @@ async function updateEventSection() {
                     }
                     
                     // Várólistás szakasz
+                    const headerRow = document.createElement("tr");
+                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
+                    tableBody.appendChild(headerRow);
                     if (varolistan.length > 0) {
-                        const headerRow = document.createElement("tr");
-                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
-                        tableBody.appendChild(headerRow);
-                    
                         varolistan.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
@@ -649,11 +646,10 @@ async function updateEventSection() {
                     }
                     
                     // Lemondta szakasz
+                    const headerRow = document.createElement("tr");
+                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
+                    tableBody.appendChild(headerRow);
                     if (lemondta.length > 0) {
-                        const headerRow = document.createElement("tr");
-                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
-                        tableBody.appendChild(headerRow);
-                    
                         lemondta.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
