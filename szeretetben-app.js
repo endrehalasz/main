@@ -53,6 +53,18 @@ if (userId) {
     window.location.href = `https://szeretetben.hu/bejelentkezes`;
 }
 
+
+// KITT animation toggle button
+const toggleButton = document.getElementById('toggleButton');
+const kitt = document.getElementById('kitt');
+toggleButton.addEventListener('click', () => {
+  if (kitt.style.display === 'none' || kitt.style.display === '') {
+    kitt.style.display = 'block';
+  } else {
+    kitt.style.display = 'none';
+  }
+});
+
 /*
 async function proba() {
     try {
