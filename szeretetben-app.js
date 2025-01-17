@@ -549,7 +549,7 @@ async function updateEventSection() {
     <div id="medInfo" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel">MED_ID: </label>
         <label id="mouseOverLabel"></label>
-        <div id="medInfo" style="display: none; margin-top: 10px;">
+        <div>
             <table id="jelentkezokTable" class="responsive-table">
                 <thead>
                     <tr>
