@@ -363,26 +363,27 @@
         }
 
 		#kitt {
-			position: absolute;
-			top: calc(100% + 10px); /* Header alá helyezés */
-			left: 25%; /* Szélesség csökkentése, középre igazítás */
-			width: 50%; /* A header szélességének fele */
-			height: 5px; /* Még vékonyabb sáv */
-			display: flex;
-			justify-content: center;
-		}
-			
-		.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten {
-			width: 10px; /* Szélesség további csökkentése */
-			height: 5px; /* Magasság további csökkentése */
-			margin: 0 1px; /* Szorosabb elrendezés */
-			background: yellow; /* Piros helyett sárga */
-			-webkit-box-shadow: 0 0 3px yellow, inset 0 0 1px rgba(255,255,255, 0.5);
-			border-radius: 1px; /* Kerekített sarkok finomítása */
-			-webkit-animation-duration: 0.7s;
-			-webkit-animation-iteration-count: infinite;
-			-webkit-animation-direction: alternate;
-		}
+  position: absolute;
+  top: calc(100% + 10px); /* Header alá helyezés */
+  left: 0; /* Teljes szélesség lefedése */
+  width: 100%; /* Header szélességéhez igazítás */
+  height: 5px; /* Vékony sáv */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten {
+  width: 15px; /* Szélesség növelése a láthatóság érdekében */
+  height: 5px; /* Magasság marad vékony */
+  margin: 0 2px; /* Kisebb távolság a jobb elrendezéshez */
+  background: yellow; /* Piros helyett sárga */
+  box-shadow: 0 0 5px yellow, inset 0 0 2px rgba(255,255,255, 0.5);
+  border-radius: 2px; /* Enyhe lekerekítés */
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
 		.one {
 		   -webkit-animation-name: first ;
 		}
