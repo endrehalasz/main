@@ -2,13 +2,13 @@
 // Globális változók definiálása
     // firebase futtatásához
 const firebaseConfig = {
-    apiKey: "AIzaSyBqsRBiFQEw_QbI8e8cbkeM63EJkosuaq4",
-    authDomain: "szeretetbenapp.firebaseapp.com",
-    projectId: "szeretetbenapp",
-    storageBucket: "szeretetbenapp.firebasestorage.app",
-    messagingSenderId: "461393102877",
-    appId: "1:461393102877:web:bf90328417e2433fff1ef4",
-    measurementId: "G-PP2RL1FJVR"
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: "szeretetbenapp.firebaseapp.com",
+  projectId: "szeretetbenapp",
+  storageBucket: "szeretetbenapp.firebasestorage.app",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 const fb_app = firebase.initializeApp(firebaseConfig);
 const auth = fb_app.auth();
