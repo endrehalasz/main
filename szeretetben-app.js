@@ -651,8 +651,8 @@ async function updateEventSection() {
                         lemondta.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
-                                <td style="background-color: lightred;">${j.vezeteknev} ${j.keresztnev}</td>
-                                <td style="background-color: lightred;">${j.response_state || ""}</td>
+                                <td style="background-color: #fac4c0;">${j.vezeteknev} ${j.keresztnev}</td>
+                                <td style="background-color: #fac4c0;">${j.response_state || ""}</td>
                             `;
                             tableBody.appendChild(row);
                         });
