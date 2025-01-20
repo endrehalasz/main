@@ -188,7 +188,8 @@ async function fetchAll() {
         console.log(apiResponse.data.message);
         console.log(apiResponse.data.data);
         // áthozott adatok átpakolása
-        const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
+        //const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
+        const parsedData = apiResponse.data.data; // JSON string visszaalakítása
         // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
         console.log(parsedData);
         if (!Array.isArray(parsedData)) {
@@ -201,7 +202,7 @@ async function fetchAll() {
         console.log(myMed);
     } catch {
         alert("Sajnálom, Valamilyen hiba történt az adatok lekérése közben.");
-        console.error("fetchAll – API válasz nem jött át megfelelően", response.error);
+        console.error("fetchAll – API válasz nem jött át megfelelően", error.message);
     }
 }
 
