@@ -160,12 +160,12 @@ async function fetchUserDataArray() {
     const headerString = "USER_ID=" + userId;
     try {
         const apiResponse = await apiCallGet(apiUrls.getUserData, headerString);
-        // console.log("API response.ok: ", apiResponse.ok);
-        // console.log("API adatválasz: ", apiResponse.data);
+        console.log("API response.ok: ", apiResponse.ok);
+        console.log("API adatválasz: ", apiResponse.data);
         if(!apiResponse.ok) { throw new error("nemoké") }
         // betesszük a lekért user datokat a globális myUser objektumba
         Object.assign(myUser, apiResponse.data);
-        // console.log(myUser);
+        console.log(myUser);
     } catch {
         console.error("fetchUserDataArray – API válasz nem jött át megfelelően");
     }    
