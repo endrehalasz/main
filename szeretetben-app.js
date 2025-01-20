@@ -38,6 +38,15 @@ const stateMapping = {
     "elmult": "Elmúlt",
     "torolt": "Törölve"
 };
+const colorStateMapping = {
+    "cimre_var": #ff8d85, //light red
+    "teasert_var": #ffaf85, //light orange
+    "uzenet_var": #ffda85, //light yellow
+    "kikuldheto": #c6ff85, //light green
+    "nyitva": lightgreen,
+    "elmult": #787878, //light gray
+    "torolt": gray
+};
 
 
 // **** RUN STARTS HERE ****
@@ -564,27 +573,26 @@ async function updateEventSection() {
                     <td>${item.max_ember}</td>
                     <td>${item.jelentkezett}</td>
                     <td>${item.varolistan}</td>
-                    <td>${stateMapping[item.state] || "?"}</td>
+                    <td style="background-color: ${colorStateMapping[item.state]};">${stateMapping[item.state] || "?"}</td>
                 </tr>
             `).join('')}
         </tbody>
     </table>
     <div>
         <button class="button-edit" onclick="showSection('ujmed-section')" style="margin-top: 10px;">Új Med</button>
-    
-    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 20px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
-        <option value="" selected disabled>Állapot</option>
-        <option value="cimre_var">Címre vár</option>
-        <option value="teasert_var">Teaserre vár</option>
-        <option value="uzenet_var">Üzenetre vár</option>
-        <option value="kikuldheto">Kiküldhető</option>
-        <option value="nyitva">Jelentkezés nyitva</option>
-        <option value="elmult">Elmúlt</option>
-        <option value="torolt">Törlés</option>
-    </select>
+        <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 20px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
+            <option value="" selected disabled>Állapot</option>
+            <option value="cimre_var">Címre vár</option>
+            <option value="teasert_var">Teaserre vár</option>
+            <option value="uzenet_var">Üzenetre vár</option>
+            <option value="kikuldheto">Kiküldhető</option>
+            <option value="nyitva">Jelentkezés nyitva</option>
+            <option value="elmult">Elmúlt</option>
+            <option value="torolt">Törlés</option>
+        </select>
     </div>
     
-    <div id="medInfo" style="display: none; margin-top: 10px;">
+    <div id="medInfo" class= "row-selected" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel" style="display: none;">MED_ID: </label>
         <label id="mouseOverLabel" style="display: none;"></label>
         <h3><label id="medCimTable"></label></h3>
