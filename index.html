@@ -294,8 +294,11 @@
 				padding: 6px;
 			}
 			.responsive-table .cim-col {
-		      min-width: 150px;
-		      max-width: 300px;
+				min-width: 150px;
+				max-width: 300px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 		    }
         }
         .responsive-table {
@@ -338,11 +341,14 @@
       		background-color: #f9f9f9;
     	}
 	    .responsive-table tbody tr:hover {
-	      background-color: #eaeaea;
+	      background-color: #cce6ff;
 	    }
 		.responsive-table .cim-col {
 			min-width: 150px;
 			max-width: 300px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
     </style>
 </head>
