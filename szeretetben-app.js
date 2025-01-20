@@ -778,7 +778,6 @@ async function loadUjMedSection() {
     const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
 
     document.getElementById("ujmed-section").innerHTML = `
-        <h3>Új meditáció létrehozása</h3>
         <p><label for="meditacio-datuma">Meditáció dátuma:</label>
         <input type="date" id="meditacio-datuma" name="meditacio-datuma" required value="${todayString}"></p>
         
