@@ -184,7 +184,7 @@ async function fetchAll() {
         const apiResponse = await apiCallPost(apiUrls.getUserData, prepareParamsForURL({USER_ID: userId, data: fb_uid}));
         if(!apiResponse.ok) { throw new error("nemoké") }
         // ide csak akkor jutunk, ha rendesen lefutott
-        console.log("saveUserData – fetchAll apiCall lefutott!");
+        console.log("fetchAll – apiCall lefutott!");
         // áthozott adatok átpakolása
         const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
         // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
