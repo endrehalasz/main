@@ -522,7 +522,7 @@ async function updateEventSection() {
                 <tr data-id="${item.MED_ID}">
                     <td>${item.datum}</td>
                     <td>${item.ido}</td>
-                    <td>${item.cim}</td>
+                    <td class="cim-col>${item.cim}</td>
                     <td>${item.max_ember}</td>
                     <td>${item.jelentkezett}</td>
                     <td>${item.varolistan}</td>
