@@ -613,7 +613,7 @@ async function updateEventSection() {
                             const row = document.createElement("tr");
                             row.innerHTML = `
                                 <td style="background-color: lightgreen;">${j.vezeteknev} ${j.keresztnev}</td>
-                                <td style="background-color: lightgreen;">${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightgreen;">${j.response_state || ""}</td>
                             `;
                             tableBody.appendChild(row);
                         });
@@ -632,7 +632,7 @@ async function updateEventSection() {
                             const row = document.createElement("tr");
                             row.innerHTML = `
                                 <td style="background-color: lightyellow;">${j.vezeteknev} ${j.keresztnev}</td>
-                                <td style="background-color: lightyellow;">${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightyellow;">${j.response_state || ""}</td>
                             `;
                             tableBody.appendChild(row);
                         });
@@ -652,7 +652,7 @@ async function updateEventSection() {
                             const row = document.createElement("tr");
                             row.innerHTML = `
                                 <td style="background-color: lightred;">${j.vezeteknev} ${j.keresztnev}</td>
-                                <td style="background-color: lightred;">${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightred;">${j.response_state || ""}</td>
                             `;
                             tableBody.appendChild(row);
                         });
