@@ -41,6 +41,8 @@ const stateMapping = {
 
 
 // **** RUN STARTS HERE ****
+// **** RUN STARTS HERE ****
+// **** RUN STARTS HERE ****
 // USER_ID lekérése és adatlekérés indítása
 const userId = getQueryParam('USER_ID');
 const fb_uid = getQueryParam('fb_uid');
@@ -81,7 +83,6 @@ async function proba() {
 async function proba() {
     alert(myUser.szamlacim);
 }
-
 
 // Bármely beadott objektumot url paraméterré alakít
     // bemenet: bármely objektumot
@@ -152,6 +153,8 @@ async function apiCallPost(my_api, my_param) {
 
 // megkapott userId alapján lekéri a user adatait a google sheet-ből
 // majd beleteszi a globális myUser objektumba
+// de igazából a meditációs listát is lekéri a google sheet-ből
+// majd beleteszi a globális myMed objektumba
 // nincs visszatérési érték
 async function fetchUserDataArray() {
     const headerString = "USER_ID=" + userId;
