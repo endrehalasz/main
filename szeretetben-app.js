@@ -215,7 +215,8 @@ async function loadUser() {
     //await showSideBarButtons(false);
     await showSection("betoltes");
     // minden adat betöltése a google sheet-ről
-    await fetchAll();
+    // await fetchAll();
+    await fetchUserDataArray();
     // Autentikáció és személyes fejléc betöltése
     if (myUser.Firebase_UID == fb_uid && myUser.login_type != "") {
         // Be szabad lépni
