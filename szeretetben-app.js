@@ -317,6 +317,11 @@ async function showSection(sectionId) {
         await loadUjMedSection();
         showSideBarButtons(true);
     }
+    // Meditáció szerkesztése
+    if (sectionId === 'med-edit-section') {
+        await loadMedEditSection();
+        showSideBarButtons(true);
+    }
 }
 
 // Sidebar gombok mutatása / elrejtése
@@ -580,6 +585,7 @@ async function updateEventSection() {
     </table>
     <div>
         <button class="button-edit" onclick="showSection('ujmed-section')" style="margin-top: 10px;">Új Med</button>
+        <button class="button-edit row-selected" onclick="showSection('med-edit-section')" style="margin-top: 10px;">Szerkeszt</button>
         <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 20px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
             <option value="" selected disabled>Állapot</option>
             <option value="cimre_var">Címre vár</option>
@@ -621,14 +627,12 @@ async function updateEventSection() {
             if (targetRow.classList.contains("selected")) {
                 // Ha már ki van jelölve, akkor töröld a kijelölést
                 targetRow.classList.remove("selected");
-                console.log("kijelölés kikapcs");
                 medTable_selectedRow_medId = null;
                 rowSelectedButtons.forEach(button => button.style.display = "none");
                 label.innerHTML = ""; // Töröljük a label tartalmát
             } else {
                 rows.forEach(row => row.classList.remove("selected"));
                 targetRow.classList.add("selected");
-                console.log("kijelölés bekapcs");
                 medTable_selectedRow_medId = selected_medId;
                 rowSelectedButtons.forEach(button => button.style.display = "inline-block");
                 medInfoDiv.style.display = "none";
@@ -642,14 +646,11 @@ async function updateEventSection() {
                     // Cím táblázat fölé
                     const label = document.getElementById("medCimTable");
                     label.textContent = `${selectedMeditacio.cim}`;
-                    console.log("medit címe kiírva");
-                    
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     // Töröljük a meglévő tartalmat
                     tableBody.innerHTML = "";
                     medInfoDiv.style.display = "block";
-                    console.log("Táblázat megjelenítése..");
                     // Jelentkezett szakasz (ezt mindig kiírjuk)
                     let headerRow = document.createElement("tr");
                     headerRow.innerHTML = `<td colspan="2" style="font-weight: bold; background-color: lightgray;">Jelentkezett</td>`;
@@ -777,6 +778,7 @@ async function loadUjMedSection() {
     const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
 
     document.getElementById("ujmed-section").innerHTML = `
+        <h3>Új meditáció létrehozása</h3>
         <p><label for="meditacio-datuma">Meditáció dátuma:</label>
         <input type="date" id="meditacio-datuma" name="meditacio-datuma" required value="${todayString}"></p>
         
@@ -792,6 +794,36 @@ async function loadUjMedSection() {
         </div>
     `;
 }
+
+// betölti az meditáció szerkesztése section-t
+async function loadMedEditSection() {
+    //const today = new Date();
+    //const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
+
+    document.getElementById("ujmed-section").innerHTML = `
+        <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
+        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].cim}"></h3>
+        <p><label for="edit-meditacio-datuma">Meditáció dátuma:</label>
+        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].datum}"></p>
+        
+        <p><label for="edit-meditacio-ideje">Meditáció ideje:</label>
+        <input type="time" id="meditacio-ideje" name="meditacio-ideje" required value="${myMed[medTable_selectedRow_medId].ido}"></p>
+        
+        <p><label for="edit-meditacio-max-ember">Maximális létszám:</label>
+        <input type="number" id="max-letszam" name="max-letszam" min="1" max="100" required value="${myMed[medTable_selectedRow_medId].max_ember}"></p>
+
+        <p><label for="edit-meditacio-teaser">Teaser: ${myMed[medTable_selectedRow_medId].teaser}</label>
+        <p><label for="edit-meditacio-message">Üzenet: ${myMed[medTable_selectedRow_medId].message}</label>
+        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${myMed[medTable_selectedRow_medId].letrehozta_datum_ido} ${myMed[medTable_selectedRow_medId].letrehozta}</label>
+        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${myMed[medTable_selectedRow_medId].modositotta_datum_ido} ${myMed[medTable_selectedRow_medId].modositotta</label>
+        
+        <div style="margin-top: 10px;">
+            <button class="button-edit" id="vissza-mededit-button" onclick="showSection('med-event-section')">Vissza</button>
+            <button class="button-edit" id="mentes-mededit-button" onclick="editMed()">Mentés</button>
+        </div>
+    `;
+}
+
 // ellenőrzi az adatokat és létrehozza az új meditácit
     // api hívása
 async function createNewMed() {
@@ -819,6 +851,11 @@ async function createNewMed() {
         alert("Sajnálom, Valamilyen hiba történt az adatok mentése közben.");
         console.error("createNewMed – API válasz nem jött át megfelelően", response.error);
     }
+}
+
+// Meditáció adatainak megváltoztatása
+    // elmenti a google sheet-be az új meditációs adatokat
+async function editMed() {
 }
 
 // Meditáció törlése
