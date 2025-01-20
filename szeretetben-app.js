@@ -54,18 +54,6 @@ if (userId) {
     window.location.href = `https://szeretetben.hu/bejelentkezes`;
 }
 
-
-// KITT animation toggle button
-const toggleButton = document.getElementById('toggleButton');
-const kitt = document.getElementById('kitt');
-toggleButton.addEventListener('click', () => {
-  if (kitt.style.display === 'none' || kitt.style.display === '') {
-    kitt.style.display = 'block';
-  } else {
-    kitt.style.display = 'none';
-  }
-});
-
 /*
 async function proba() {
     try {
@@ -116,10 +104,6 @@ function prepareParamsForURL(myObject) {
     const myNewParam = new URLSearchParams(result);
     return myNewParam.toString();
 }
-
-
-
-
 
 // URL fejlécből kiszedi a kért paramétert és visszatér az értékével
 function getQueryParam(param) {
@@ -609,12 +593,6 @@ async function updateEventSection() {
                     const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
                     const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
                     
-                    /* console.log(selectedMeditacio);
-                    console.log(jelentkezok);
-                    console.log(jelentkezett);
-                    console.log(varolistan);
-                    console.log(lemondta); */
-                    
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     const medInfoDiv = document.getElementById("medInfo");
@@ -622,7 +600,7 @@ async function updateEventSection() {
                     tableBody.innerHTML = "";
                     medInfoDiv.style.display = "block";
                     console.log("Táblázat megjelenítése..");
-                    // Jelentkezett szakasz
+                    // Jelentkezett szakasz (ezt mindig kiírjuk)
                     let headerRow = document.createElement("tr");
                     headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
                     tableBody.appendChild(headerRow);
@@ -642,10 +620,10 @@ async function updateEventSection() {
                     }
                     
                     // Várólistás szakasz
-                    headerRow = document.createElement("tr");
-                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
-                    tableBody.appendChild(headerRow);
                     if (varolistan.length > 0) {
+                        headerRow = document.createElement("tr");
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
+                        tableBody.appendChild(headerRow);
                         varolistan.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
@@ -655,16 +633,17 @@ async function updateEventSection() {
                             tableBody.appendChild(row);
                         });
                     } else {
-                        const emptyRow = document.createElement("tr");
+                        //nem írjuk ki ezt a részt, ha senki
+                        /*const emptyRow = document.createElement("tr");
                         emptyRow.innerHTML = `<td colspan="2">még senki</td>`;
-                        tableBody.appendChild(emptyRow);
+                        tableBody.appendChild(emptyRow);*/
                     }
                     
                     // Lemondta szakasz
-                    headerRow = document.createElement("tr");
-                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
-                    tableBody.appendChild(headerRow);
                     if (lemondta.length > 0) {
+                        headerRow = document.createElement("tr");
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
+                        tableBody.appendChild(headerRow);
                         lemondta.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
@@ -674,9 +653,10 @@ async function updateEventSection() {
                             tableBody.appendChild(row);
                         });
                     } else {
-                        const emptyRow = document.createElement("tr");
+                        //nem írjuk ki ezt a részt, ha senki
+                        /*const emptyRow = document.createElement("tr");
                         emptyRow.innerHTML = `<td colspan="2">senki</td>`;
-                        tableBody.appendChild(emptyRow);
+                        tableBody.appendChild(emptyRow);*/
                     }
                 }
             }
