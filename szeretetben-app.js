@@ -39,13 +39,13 @@ const stateMapping = {
     "torolt": "Törölve"
 };
 const colorStateMapping = {
-    "cimre_var": #ff8d85, //light red
-    "teasert_var": #ffaf85, //light orange
-    "uzenet_var": #ffda85, //light yellow
-    "kikuldheto": #c6ff85, //light green
-    "nyitva": lightgreen,
-    "elmult": #787878, //light gray
-    "torolt": gray
+    "cimre_var": "#ff8d85", //light red
+    "teasert_var": "#ffaf85", //light orange
+    "uzenet_var": "#ffda85", //light yellow
+    "kikuldheto": "#c6ff85", //light green
+    "nyitva": "lightgreen",
+    "elmult": "#787878", //light gray
+    "torolt": "gray"
 };
 
 
