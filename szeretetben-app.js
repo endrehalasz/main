@@ -812,11 +812,11 @@ async function loadMedEditSection() {
         <p><label for="edit-meditacio-max-ember">Maximális létszám:</label>
         <input type="number" id="max-letszam" name="max-letszam" min="1" max="100" required value="${myMed[medTable_selectedRow_medId].max_ember}"></p>
 
-        <p><label for="edit-meditacio-teaser">Teaser: ${myMed[medTable_selectedRow_medId].teaser}</label>
-        <p><label for="edit-meditacio-message">Üzenet: ${myMed[medTable_selectedRow_medId].message}</label>
-        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${myMed[medTable_selectedRow_medId].letrehozta_datum_ido} ${myMed[medTable_selectedRow_medId].letrehozta}</label>
-        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${myMed[medTable_selectedRow_medId].modositotta_datum_ido} ${myMed[medTable_selectedRow_medId].modositotta</label>
-        
+        <p><label for="edit-meditacio-teaser">Teaser: ${myMed[medTable_selectedRow_medId].teaser}</label></p>
+        <p><label for="edit-meditacio-message">Üzenet: ${myMed[medTable_selectedRow_medId].message}</label></p>
+        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${myMed[medTable_selectedRow_medId].letrehozta_datum_ido} ${myMed[medTable_selectedRow_medId].letrehozta}</label></p>
+        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${myMed[medTable_selectedRow_medId].modositotta_datum_ido} ${myMed[medTable_selectedRow_medId].modositotta}</label></p>
+
         <div style="margin-top: 10px;">
             <button class="button-edit" id="vissza-mededit-button" onclick="showSection('med-event-section')">Vissza</button>
             <button class="button-edit" id="mentes-mededit-button" onclick="editMed()">Mentés</button>
