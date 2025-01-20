@@ -574,12 +574,14 @@ async function updateEventSection() {
             if (targetRow.classList.contains("selected")) {
                 // Ha már ki van jelölve, akkor töröld a kijelölést
                 targetRow.classList.remove("selected");
+                console.log("kijelölés kikapcs");
                 medTable_selectedRow_medId = null;
                 rowSelectedButtons.forEach(button => button.style.display = "none");
                 label.innerHTML = ""; // Töröljük a label tartalmát
             } else {
                 rows.forEach(row => row.classList.remove("selected"));
                 targetRow.classList.add("selected");
+                console.log("kijelölés bekapcs");
                 medTable_selectedRow_medId = selected_medId;
                 rowSelectedButtons.forEach(button => button.style.display = "inline-block");
                 medInfoDiv.style.display = "none";
@@ -593,6 +595,8 @@ async function updateEventSection() {
                     // Cím táblázat fölé
                     const label = document.getElementById("medCimTable");
                     label.textContent = `${selectedMeditacio.cim}`;
+                    console.log("medit címe kiírva");
+                    
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     const medInfoDiv = document.getElementById("medInfo");
