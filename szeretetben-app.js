@@ -801,8 +801,10 @@ async function loadMedEditSection() {
     const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
     let a_date = selectedMeditacio.letrehozta_datum_ido;
     let b_date = selectedMeditacio.modositotta_datum_ido;
-    a_date = a_date.toISOString().split("T")[0]; // YYYY-MM-DD formátum
-    b_date = b_date.toISOString().split("T")[0]; // YYYY-MM-DD formátum
+    console.log(a_date);
+    console.log(b_date);
+    //a_date = a_date.toISOString().split("T")[0]; // YYYY.MM.DD HH:mm formátum
+    //b_date = b_date.toISOString().split("T")[0]; // YYYY.MM.DD HH:mm formátum
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
         <input type="text" id="edit-meditacio-cime" name="edit-meditacio-cime" required value="${selectedMeditacio.cim}" class="inputbox"></h3>
