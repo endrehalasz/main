@@ -100,7 +100,7 @@ function prepareParamsForURL(myObject) {
             result[key] = myObject[key]; // Szöveges értékek
         }
     }
-    console.log(result);
+    // console.log(result);
     // visszatérési érték már a kész query paraméter!
     const myNewParam = new URLSearchParams(result);
     return myNewParam.toString();
@@ -184,12 +184,11 @@ async function fetchAll() {
         const apiResponse = await apiCallPost(apiUrls.getUserData, prepareParamsForURL({USER_ID: userId, data: fb_uid}));
         if(!apiResponse.ok) { throw new error("nemoké") }
         // ide csak akkor jutunk, ha rendesen lefutott
-        console.log("fetchAll – apiCall lefutott!");
-        console.log(apiResponse.data.message);
-        console.log(apiResponse.data.data);
+        // console.log("fetchAll apiCall lefutott!");
+        // console.log(apiResponse.data.message);
+        // console.log(apiResponse.data.data);
         // áthozott adatok átpakolása
-        //const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
-        const parsedData = apiResponse.data.data; // JSON string visszaalakítása
+        const parsedData = apiResponse.data.data; // adat rész kiszedése a válaszból
         // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
         console.log(parsedData);
         if (!Array.isArray(parsedData)) {
@@ -198,8 +197,8 @@ async function fetchAll() {
         Object.assign(myUser, parsedData[0]); // Globális myUser obj feltöltése az adatokkal
         myMed.length = 0; // Esetlegesen meglévő elemek törlése
         myMed.push(...parsedData[1]); // Globális myMed tömb feltöltése az adatokkal
-        console.log(myUser);
-        console.log(myMed);
+        // console.log(myUser);
+        // console.log(myMed);
     } catch (error) {
         alert("Sajnálom, Valamilyen hiba történt az adatok lekérése közben.");
         console.error("fetchAll – API válasz nem jött át megfelelően", error);
