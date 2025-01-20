@@ -573,7 +573,7 @@ async function updateEventSection() {
                     <td>${item.max_ember}</td>
                     <td>${item.jelentkezett}</td>
                     <td>${item.varolistan}</td>
-                    <td style="background-color: ${colorStateMapping[item.state]};">${stateMapping[item.state] || "?"}</td>
+                    <td style="background-color: ${colorStateMapping[item.state] || "#ffffff"};">${stateMapping[item.state] || "?"}</td>
                 </tr>
             `).join('')}
         </tbody>
