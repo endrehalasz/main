@@ -171,6 +171,37 @@ async function fetchUserDataArray() {
     }    
 }
 
+// minden frissítenivaló adatot lekér és frissít a globális változókban
+// user adatok frissítése
+// meditációs lista frissítése
+// később, ha még kell más is, ide lehet beírni
+// visszatérő adat egy lista, melyben sorban objektumok az egyes lekért tételek
+// első: belépett user adatai
+// második: lekért meditációs lista
+async function fetchAll() {
+    // Adatok API-n keresztüli lekérése
+    try {
+        const apiResponse = await apiCallPost(apiUrls.getUserData, prepareParamsForURL({USER_ID: userId, data: fb_uid}));
+        if(!apiResponse.ok) { throw new error("nemoké") }
+        // ide csak akkor jutunk, ha rendesen lefutott
+        console.log("saveUserData – fetchAll apiCall lefutott!");
+        // áthozott adatok átpakolása
+        const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
+        // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
+        console.log(parsedData);
+        if (!Array.isArray(parsedData)) {
+            throw new Error("deleteMed – A JSON string nem egy tömböt tartalmaz");
+        }
+        Object.assign(myUser, parsedData[0]);
+        console.log(myUser.keresztnev); // Globális myUser obj feltöltése az adatokkal
+        myMed.length = 0; // Esetlegesen meglévő elemek törlése
+        myMed.push(...parsedData[1]); // Globális myMed tömb feltöltése az adatokkal
+    } catch {
+        alert("Sajnálom, Valamilyen hiba történt az adatok lekérése közben.");
+        console.error("fetchAll – API válasz nem jött át megfelelően", response.error);
+    }
+}
+
 // User autentikációja és betöltése a felületre
 async function loadUser() {
     // Oldalsáv és tartalom megjelenítése
