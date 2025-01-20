@@ -361,125 +361,6 @@
         .responsive-table tr.selected {
             background-color: #cce5ff;
         }
-
-		#kitt {
-  position: absolute;
-  top: calc(100% + 10px); /* Header alá helyezés */
-  left: 0; /* Teljes szélesség lefedése */
-  width: 100%; /* Header szélességéhez igazítás */
-  height: 5px; /* Vékony sáv */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten {
-  width: 15px; /* Szélesség növelése a láthatóság érdekében */
-  height: 5px; /* Magasság marad vékony */
-  margin: 0 2px; /* Kisebb távolság a jobb elrendezéshez */
-  background: yellow; /* Piros helyett sárga */
-  box-shadow: 0 0 5px yellow, inset 0 0 2px rgba(255,255,255, 0.5);
-  border-radius: 2px; /* Enyhe lekerekítés */
-  animation-duration: 0.7s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-		.one {
-		   -webkit-animation-name: first ;
-		}
-		.two {
-		  -webkit-animation-name: second ;
-		}
-		.three {
-		  -webkit-animation-name: third ;
-		}
-		.four {
-		  -webkit-animation-name: fourth ;
-		}
-		.five {
-		  -webkit-animation-name: fifth ;
-		}
-		.six {
-		  -webkit-animation-name: sixth ;
-		}
-		.seven {
-		  -webkit-animation-name: seventh ;
-		}
-		.eight {
-		  -webkit-animation-name: eighth ;
-		}
-		.nine {
-		  -webkit-animation-name: ninth ;
-		}
-		.ten {
-		  -webkit-animation-name: tenth ;
-		}
-		@-webkit-keyframes first {
-		  0%   {opacity:0.2;}
-		  10%  {opacity:1;}
-		  20%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes second {
-		  0%   {opacity:0;}
-		  10%   {opacity:0.2;}
-		  20%  {opacity:1;}
-		  30%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes third {
-		  0%   {opacity:0;}
-		  20%  {opacity:0.2;}
-		  30%  {opacity:1;}
-		  40%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes fourth {
-		  0%   {opacity:0;}
-		  30%  {opacity:0.2;}
-		  40%  {opacity:1;}
-		  50%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes fifth {
-		  0%   {opacity:0;}
-		  40%  {opacity:0.2;}
-		  50%  {opacity:1;}
-		  60%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes sixth {
-		  0%   {opacity:0;}
-		  50%  {opacity:0.2;}
-		  60%  {opacity:1;}
-		  70%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes seventh {
-		  0%   {opacity:0;}
-		  60%  {opacity:0.2;}
-		  70%  {opacity:1;}
-		  80%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes eighth {
-		  0%   {opacity:0;}
-		  70%  {opacity:0.2;}
-		  80%  {opacity:1;}
-		  90%  {opacity:0.2;}
-		  100% {opacity:0;}
-		}
-		@-webkit-keyframes ninth {
-		  0%   {opacity:0;}
-		  80%  {opacity:0.2;}
-		  90%  {opacity:1;}
-		  100% {opacity:0.2;}
-		}
-		@-webkit-keyframes tenth {
-		  0%   {opacity:0;}
-		  90%  {opacity:0.2;}
-		  100%  {opacity:1;}
-		}
     </style>
 </head>
 
@@ -506,7 +387,6 @@
 	
     <div class="main-container">
         <div class="sidebar">
-			<button class="button-53 normalbutton" onclick="showSection('betoltes')" id="toggleButton">Toggle Animation</button>
             <button class="button-53 normalbutton" onclick="showSection('meditaciok-section')">Meditációk</button>
             <button class="button-53 normalbutton" onclick="showSection('workshopok-section')">Workshopok</button>
             <button class="button-53 adminbutton hidden" id="admin-users-btn" onclick="showSection('users-section')">Felhasználók</button>
@@ -520,18 +400,6 @@
         <div class="content">
             <div id="betoltes" class="content-section visible">
                 <img src="https://www.szeretetben.hu/wp-content/uploads/2025/01/update.png" alt="Adatok betöltése..." style="width: 120px; height: 120px;">
-				<div id='kitt'>
-				  <div class='one'></div>
-				  <div class='two'></div>
-				  <div class='three'></div>
-				  <div class='four'></div>
-				  <div class='five'></div>
-				  <div class='six'></div>
-				  <div class='seven'></div>
-				  <div class='eight'></div>
-				  <div class='nine'></div>
-				  <div class='ten'></div>
-				</div>
             </div>
             <div id="profilom" class="content-section">
                 <h3>Profilom</h3>
