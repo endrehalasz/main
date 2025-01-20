@@ -532,9 +532,9 @@ async function updateEventSection() {
         </tbody>
     </table>
     <div>
-        <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
-    </div>
-    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 18px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
+        <button class="button-edit" onclick="showSection('ujmed-section')" style="margin-top: 10px;">Új Med</button>
+    
+    <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 20px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
         <option value="" selected disabled>Állapot</option>
         <option value="cimre_var">Címre vár</option>
         <option value="teasert_var">Teaserre vár</option>
@@ -544,11 +544,12 @@ async function updateEventSection() {
         <option value="elmult">Elmúlt</option>
         <option value="torolt">Törlés</option>
     </select>
-    
+    </div>
     
     <div id="medInfo" style="display: none; margin-top: 10px;">
         <label id="mouseOverMedIdLabel" style="display: none;">MED_ID: </label>
         <label id="mouseOverLabel" style="display: none;"></label>
+        <h3><label id="medCimTable"></label></h3>
         <div>
             <table id="jelentkezokTable" class="responsive-table">
                 <thead>
@@ -581,6 +582,7 @@ async function updateEventSection() {
                 targetRow.classList.add("selected");
                 medTable_selectedRow_medId = selected_medId;
                 rowSelectedButtons.forEach(button => button.style.display = "inline-block");
+                medInfoDiv.style.display = "none";
                 // Kiválasztott meditáció adatai
                 const selectedMeditacio = myMed.find(item => item.MED_ID == String(selected_medId));
                 if (selectedMeditacio) {
@@ -588,7 +590,9 @@ async function updateEventSection() {
                     const jelentkezett = jelentkezok.filter(j => j.jelentkezes_state === "jelentkezett");
                     const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
                     const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
-                    
+                    // Cím táblázat fölé
+                    const label = document.getElementById("medCimTable");
+                    label.textContent = `${selectedMeditacio.cim}`;
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
                     const medInfoDiv = document.getElementById("medInfo");
