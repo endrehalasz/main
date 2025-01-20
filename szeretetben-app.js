@@ -117,10 +117,10 @@ async function apiCallGet(my_api, my_headerString) {
     const mostani_apiurl = my_api + "?" + my_headerString;
     // console.log("GET apiCall API hívás indítása", mostani_apiurl);
     try {
-        const response = await fetch(mostani_apiurl);
-        const data = await response.json();
-        // console.log("apiCall API válasz:", response.ok, data);
-        return {ok: response.ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
+        const  = await fetch(mostani_apiurl);
+        const data = await .json();
+        // console.log("apiCall API válasz:", .ok, data);
+        return {ok: .ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
     } catch (error) {
         alert("GET apiCall hiba – sajnos");
         console.error("Hiba az apiCall API hívás során:", error);
