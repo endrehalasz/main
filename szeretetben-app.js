@@ -796,26 +796,32 @@ async function loadUjMedSection() {
 
 // betölti az meditáció szerkesztése section-t
 async function loadMedEditSection() {
-    //const today = new Date();
-    //const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
+    
     console.log("med-edit-section feltöltése...");
     const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
+    let a_date = selectedMeditacio.letrehozta_datum_ido;
+    let b_date = selectedMeditacio.modositotta_datum_ido;
+    a_date = a_date.toISOString().split("T")[0]; // YYYY-MM-DD formátum
+    b_date = b_date.toISOString().split("T")[0]; // YYYY-MM-DD formátum
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
-        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${selectedMeditacio.cim}"></h3>
+        <input type="text" id="edit-meditacio-cime" name="edit-meditacio-cime" required value="${selectedMeditacio.cim}" class="inputbox"></h3>
         <p><label for="edit-meditacio-datuma">Meditáció dátuma:</label>
-        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${selectedMeditacio.datum}"></p>
+        <input type="date" id="edit-meditacio-datuma" name="edit-meditacio-datuma" required value="${selectedMeditacio.datum}"></p>
         
         <p><label for="edit-meditacio-ideje">Meditáció ideje:</label>
-        <input type="time" id="meditacio-ideje" name="meditacio-ideje" required value="${selectedMeditacio.ido}"></p>
+        <input type="time" id="edit-meditacio-ideje" name="edit-meditacio-ideje" required value="${selectedMeditacio.ido}"></p>
         
         <p><label for="edit-meditacio-max-ember">Maximális létszám:</label>
-        <input type="number" id="max-letszam" name="max-letszam" min="1" max="100" required value="${selectedMeditacio.max_ember}"></p>
+        <input type="number" id="edit-meditacio-max-ember" name="edit-meditacio-max-ember" min="1" max="100" required value="${selectedMeditacio.max_ember}"></p>
 
-        <p><label for="edit-meditacio-teaser">Teaser: ${selectedMeditacio.teaser}</label></p>
-        <p><label for="edit-meditacio-message">Üzenet: ${selectedMeditacio.message}</label></p>
-        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${selectedMeditacio.letrehozta_datum_ido} ${selectedMeditacio.letrehozta}</label></p>
-        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${selectedMeditacio.modositotta_datum_ido} ${selectedMeditacio.modositotta}</label></p>
+        <p><label for="edit-meditacio-teaser">Teaser:</label>
+        <input type="text" id="edit-meditacio-teaser" name="edit-meditacio-teaser" required value="${selectedMeditacio.teaser}" class="inputbox"></p>
+        <p><label for="edit-meditacio-message">Üzenet: ${selectedMeditacio.message}</label>
+        <input type="text" id="edit-meditacio-message" name="edit-meditacio-message" required value="${selectedMeditacio.message}" class="inputbox"></p>
+        
+        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${a_date} ${selectedMeditacio.letrehozta}</label></p>
+        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${b_date} ${selectedMeditacio.modositotta}</label></p>
 
         <div style="margin-top: 10px;">
             <button class="button-edit" id="vissza-mededit-button" onclick="showSection('med-event-section')">Vissza</button>
