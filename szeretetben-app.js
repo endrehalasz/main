@@ -552,10 +552,6 @@ async function updateEventSection() {
         <div>
             <table id="jelentkezokTable" class="responsive-table">
                 <thead>
-                    <tr>
-                        <th>Név</th>
-                        <th>Visszajelzés</th>
-                    </tr>
                 </thead>
                 <tbody id="jelentkezokBody">
                 </tbody>
@@ -602,14 +598,14 @@ async function updateEventSection() {
                     console.log("Táblázat megjelenítése..");
                     // Jelentkezett szakasz (ezt mindig kiírjuk)
                     let headerRow = document.createElement("tr");
-                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Jelentkezett</td>`;
+                    headerRow.innerHTML = `<td colspan="2" style="font-weight: bold; background-color: lightgray;">Jelentkezett</td>`;
                     tableBody.appendChild(headerRow);
                     if (jelentkezett.length > 0) {
                         jelentkezett.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
-                                <td>${j.vezeteknev} ${j.keresztnev}</td>
-                                <td>${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightgreen;">${j.vezeteknev} ${j.keresztnev}</td>
+                                <td style="background-color: lightgreen;">${j.response_state || "Nincs válasz"}</td>
                             `;
                             tableBody.appendChild(row);
                         });
@@ -622,13 +618,13 @@ async function updateEventSection() {
                     // Várólistás szakasz
                     if (varolistan.length > 0) {
                         headerRow = document.createElement("tr");
-                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Várólistán</td>`;
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold; background-color: lightgray;">Várólistán</td>`;
                         tableBody.appendChild(headerRow);
                         varolistan.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
-                                <td>${j.vezeteknev} ${j.keresztnev}</td>
-                                <td>${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightyellow;">${j.vezeteknev} ${j.keresztnev}</td>
+                                <td style="background-color: lightyellow;">${j.response_state || "Nincs válasz"}</td>
                             `;
                             tableBody.appendChild(row);
                         });
@@ -642,13 +638,13 @@ async function updateEventSection() {
                     // Lemondta szakasz
                     if (lemondta.length > 0) {
                         headerRow = document.createElement("tr");
-                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold;">Lemondta</td>`;
+                        headerRow.innerHTML = `<td colspan="2" style="font-weight: bold; background-color: lightgray;">Lemondta</td>`;
                         tableBody.appendChild(headerRow);
                         lemondta.forEach(j => {
                             const row = document.createElement("tr");
                             row.innerHTML = `
-                                <td>${j.vezeteknev} ${j.keresztnev}</td>
-                                <td>${j.response_state || "Nincs válasz"}</td>
+                                <td style="background-color: lightred;">${j.vezeteknev} ${j.keresztnev}</td>
+                                <td style="background-color: lightred;">${j.response_state || "Nincs válasz"}</td>
                             `;
                             tableBody.appendChild(row);
                         });
