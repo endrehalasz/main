@@ -800,7 +800,7 @@ async function loadMedEditSection() {
     //const today = new Date();
     //const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
 
-    document.getElementById("ujmed-section").innerHTML = `
+    document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
         <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].cim}"></h3>
         <p><label for="edit-meditacio-datuma">Meditáció dátuma:</label>
