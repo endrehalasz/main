@@ -681,7 +681,8 @@ async function updateEventSection() {
             }
         }
     });
-    
+
+    /*
     table.addEventListener("mouseover", event => {
         const label = document.getElementById("mouseOverMedIdLabel");
         const targetRow = event.target.closest("tr");
@@ -702,6 +703,8 @@ async function updateEventSection() {
             medInfoDiv.style.display = "none"; // Label elrejtése
         }
     });
+    */
+    
     await showSection('med-event-section');
 }
 
