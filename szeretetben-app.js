@@ -117,10 +117,10 @@ async function apiCallGet(my_api, my_headerString) {
     const mostani_apiurl = my_api + "?" + my_headerString;
     // console.log("GET apiCall API hívás indítása", mostani_apiurl);
     try {
-        const  = await fetch(mostani_apiurl);
-        const data = await .json();
+        const response = await fetch(mostani_apiurl);
+        const data = await response.json();
         // console.log("apiCall API válasz:", .ok, data);
-        return {ok: .ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
+        return {ok: response.ok, data: data};  //kiadjuk az adatot (ami egy objektum, benne egy Boolean és egy Objektum)
     } catch (error) {
         alert("GET apiCall hiba – sajnos");
         console.error("Hiba az apiCall API hívás során:", error);
@@ -166,8 +166,8 @@ async function fetchUserDataArray() {
         // betesszük a lekért user datokat a globális myUser objektumba
         Object.assign(myUser, apiResponse.data);
         // console.log(myUser);
-    } catch {
-        console.error("fetchUserDataArray – API válasz nem jött át megfelelően");
+    } catch (error) {
+        console.error("fetchUserDataArray – API válasz nem jött át megfelelően", error);
     }    
 }
 
@@ -200,9 +200,9 @@ async function fetchAll() {
         myMed.push(...parsedData[1]); // Globális myMed tömb feltöltése az adatokkal
         console.log(myUser);
         console.log(myMed);
-    } catch {
+    } catch (error) {
         alert("Sajnálom, Valamilyen hiba történt az adatok lekérése közben.");
-        console.error("fetchAll – API válasz nem jött át megfelelően", error.message);
+        console.error("fetchAll – API válasz nem jött át megfelelően", error);
     }
 }
 
