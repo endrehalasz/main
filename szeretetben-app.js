@@ -568,6 +568,7 @@ async function updateEventSection() {
         const targetRow = event.target.closest("tr");
         const rowSelectedButtons = document.querySelectorAll(".row-selected");
         const label = document.getElementById("mouseOverLabel"); // A cél label
+        const medInfoDiv = document.getElementById("medInfo");
         // Az azonosító kiolvasása a kiválasztott sorból
         const selected_medId = targetRow.getAttribute("data-id");
         if (targetRow && selected_medId) {
@@ -599,7 +600,6 @@ async function updateEventSection() {
                     
                     // Jelentkezett listázása
                     const tableBody = document.getElementById("jelentkezokBody");
-                    const medInfoDiv = document.getElementById("medInfo");
                     // Töröljük a meglévő tartalmat
                     tableBody.innerHTML = "";
                     medInfoDiv.style.display = "block";
