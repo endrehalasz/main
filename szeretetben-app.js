@@ -190,7 +190,7 @@ async function fetchAll() {
         // áthozott adatok átpakolása
         const parsedData = apiResponse.data.data; // adat rész kiszedése a válaszból
         // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
-        console.log(parsedData);
+        // console.log(parsedData);
         if (!Array.isArray(parsedData)) {
             throw new Error("deleteMed – A JSON string nem egy tömböt tartalmaz");
         }
