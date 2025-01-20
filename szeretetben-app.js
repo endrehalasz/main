@@ -526,7 +526,7 @@ async function updateEventSection() {
             <tr>
                 <th>Dátum</th>
                 <th>Idő</th>
-                <th>Cím</th>
+                <th class="cim-col>Cím</th>
                 <th>Max</th>
                 <th>Jelen</th>
                 <th>Váró</th>
@@ -547,7 +547,9 @@ async function updateEventSection() {
             `).join('')}
         </tbody>
     </table>
-    <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
+    <div>
+        <button class="button-edit" onclick="showSection('ujmed-section')">Új Med</button>
+    </div>
     <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 18px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
         <option value="" selected disabled>Állapot</option>
         <option value="cimre_var">Címre vár</option>
@@ -561,8 +563,8 @@ async function updateEventSection() {
     
     
     <div id="medInfo" style="display: none; margin-top: 10px;">
-        <label id="mouseOverMedIdLabel">MED_ID: </label>
-        <label id="mouseOverLabel"></label>
+        <label id="mouseOverMedIdLabel" style="display: none;">MED_ID: </label>
+        <label id="mouseOverLabel" style="display: none;"></label>
         <div>
             <table id="jelentkezokTable" class="responsive-table">
                 <thead>
@@ -575,7 +577,6 @@ async function updateEventSection() {
                 </tbody>
             </table>
         </div>
-
     </div>
     `;
     
