@@ -821,7 +821,7 @@ async function loadMedEditSection() {
 
         <p><label for="edit-meditacio-teaser">Teaser:</label>
         <input type="text" id="edit-meditacio-teaser" name="edit-meditacio-teaser" required value="${selectedMeditacio.teaser}" class="inputbox"></p>
-        <p><label for="edit-meditacio-message">Üzenet: ${selectedMeditacio.message}</label>
+        <p><label for="edit-meditacio-message">Üzenet:</label>
         <input type="text" id="edit-meditacio-message" name="edit-meditacio-message" required value="${selectedMeditacio.message}" class="inputbox"></p>
         
         <p><label for="edit-meditacio-letrehozta">Létrehozta: ${a_date} ${selectedMeditacio.letrehozta}</label></p>
