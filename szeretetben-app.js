@@ -592,7 +592,7 @@ async function updateEventSection() {
                     const jelentkezok = selectedMeditacio.jelentkezok || [];
                     const jelentkezett = jelentkezok.filter(j => j.jelentkezes_state === "jelentkezett");
                     const varolistan = jelentkezok.filter(j => j.jelentkezes_state === "varolistan");
-                    const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "lemondta");
+                    const lemondta = jelentkezok.filter(j => j.jelentkezes_state === "torolt");
                     // Cím táblázat fölé
                     const label = document.getElementById("medCimTable");
                     label.textContent = `${selectedMeditacio.cim}`;
