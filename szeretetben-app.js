@@ -585,7 +585,7 @@ async function updateEventSection() {
     </table>
     <div>
         <button class="button-edit" onclick="showSection('ujmed-section')" style="margin-top: 10px;">Új Med</button>
-        <button class="button-edit row-selected" onclick="showSection('med-edit-section')" style="margin-top: 10px;">Szerkeszt</button>
+        <button class="button-edit row-selected" onclick="showSection('med-edit-section')" style="margin-top: 10px; display: none;">Szerkeszt</button>
         <select id="allapot-lista" class="row-selected" style="display: none; width: 200px; font-size: 20px; padding: 5px; margin-top: 5px;" onchange="handleMedAllapot(this)">
             <option value="" selected disabled>Állapot</option>
             <option value="cimre_var">Címre vár</option>
@@ -798,7 +798,7 @@ async function loadUjMedSection() {
 async function loadMedEditSection() {
     //const today = new Date();
     //const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
-
+    console.log("med-edit-section feltöltése...");
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
         <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].cim}"></h3>
@@ -821,6 +821,7 @@ async function loadMedEditSection() {
             <button class="button-edit" id="mentes-mededit-button" onclick="editMed()">Mentés</button>
         </div>
     `;
+    console.log("med-edit-section feltöltése kész");
 }
 
 // ellenőrzi az adatokat és létrehozza az új meditácit
