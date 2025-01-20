@@ -185,6 +185,8 @@ async function fetchAll() {
         if(!apiResponse.ok) { throw new error("nemoké") }
         // ide csak akkor jutunk, ha rendesen lefutott
         console.log("fetchAll – apiCall lefutott!");
+        console.log(apiResponse.data.message);
+        console.log(apiResponse.data.data);
         // áthozott adatok átpakolása
         const parsedData = JSON.parse(apiResponse.data.data); // JSON string visszaalakítása
         // A frissített meditációs listát itt kapjuk meg –» myMed-be rakjuk és frissítjük a táblázatot
