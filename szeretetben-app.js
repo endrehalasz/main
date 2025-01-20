@@ -799,12 +799,14 @@ async function loadMedEditSection() {
     
     console.log("med-edit-section feltöltése...");
     const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
-    let a_date = selectedMeditacio.letrehozta_datum_ido;
-    let b_date = selectedMeditacio.modositotta_datum_ido;
+    let a_date = new Date(selectedMeditacio.letrehozta_datum_ido);
+    let b_date = new Date(selectedMeditacio.modositotta_datum_ido);
     console.log(a_date);
     console.log(b_date);
-    //a_date = a_date.toISOString().split("T")[0]; // YYYY.MM.DD HH:mm formátum
-    //b_date = b_date.toISOString().split("T")[0]; // YYYY.MM.DD HH:mm formátum
+    a_date = formatCustomDate(a_date);
+    b_date = formatCustomDate(b_date);
+    console.log(a_date);
+    console.log(b_date);
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
         <input type="text" id="edit-meditacio-cime" name="edit-meditacio-cime" required value="${selectedMeditacio.cim}" class="inputbox"></h3>
@@ -913,4 +915,15 @@ async function deleteMed() {
         }
         await updateEventSection();
     }
+}
+
+// Dátum-idő formázás saját függvénnyel
+function formatCustomDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Hónap 0-alapú, ezért +1
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    return `${year}.${month}.${day}. ${hours}:${minutes}`;
 }
