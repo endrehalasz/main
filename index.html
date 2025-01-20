@@ -332,8 +332,11 @@
             background-color: #f8f8f8;
         }
         .responsive-table tr.selected {
-            background-color: #cce6ff;
+            background-color: #cce6ff; /* kijelölési szín */
         }
+		.responsive-table tbody tr.selected:hover {
+		  background-color: #cce6ff; /* kijelölési szín marad hover-nél is */
+		}
 		.responsive-table tbody tr {
       		background-color: #fff;
     	}
