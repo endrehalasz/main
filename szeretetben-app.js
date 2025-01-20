@@ -160,12 +160,12 @@ async function fetchUserDataArray() {
     const headerString = "USER_ID=" + userId;
     try {
         const apiResponse = await apiCallGet(apiUrls.getUserData, headerString);
-        console.log("API response.ok: ", apiResponse.ok);
-        console.log("API adatválasz: ", apiResponse.data);
+        // console.log("API response.ok: ", apiResponse.ok);
+        // console.log("API adatválasz: ", apiResponse.data);
         if(!apiResponse.ok) { throw new error("nemoké") }
         // betesszük a lekért user datokat a globális myUser objektumba
         Object.assign(myUser, apiResponse.data);
-        console.log(myUser);
+        // console.log(myUser);
     } catch {
         console.error("fetchUserDataArray – API válasz nem jött át megfelelően");
     }    
@@ -192,10 +192,11 @@ async function fetchAll() {
         if (!Array.isArray(parsedData)) {
             throw new Error("deleteMed – A JSON string nem egy tömböt tartalmaz");
         }
-        Object.assign(myUser, parsedData[0]);
-        console.log(myUser.keresztnev); // Globális myUser obj feltöltése az adatokkal
+        Object.assign(myUser, parsedData[0]); // Globális myUser obj feltöltése az adatokkal
         myMed.length = 0; // Esetlegesen meglévő elemek törlése
         myMed.push(...parsedData[1]); // Globális myMed tömb feltöltése az adatokkal
+        console.log(myUser);
+        console.log(myMed);
     } catch {
         alert("Sajnálom, Valamilyen hiba történt az adatok lekérése közben.");
         console.error("fetchAll – API válasz nem jött át megfelelően", response.error);
@@ -211,8 +212,8 @@ async function loadUser() {
     document.querySelector('.mobile-logout').classList.add('visible');
     //await showSideBarButtons(false);
     await showSection("betoltes");
-    // user adatainak betöltése a google sheet-ről
-    await fetchUserDataArray();
+    // minden adat betöltése a google sheet-ről
+    await fetchAll();
     // Autentikáció és személyes fejléc betöltése
     if (myUser.Firebase_UID == fb_uid && myUser.login_type != "") {
         // Be szabad lépni
