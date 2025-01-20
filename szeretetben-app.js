@@ -799,12 +799,8 @@ async function loadMedEditSection() {
     
     console.log("med-edit-section feltöltése...");
     const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
-    let a_date = new Date(selectedMeditacio.letrehozta_datum_ido);
-    let b_date = new Date(selectedMeditacio.modositotta_datum_ido);
-    console.log(a_date);
-    console.log(b_date);
-    a_date = formatCustomDate(a_date);
-    b_date = formatCustomDate(b_date);
+    let a_date = formatCustomDate(selectedMeditacio.letrehozta_datum_ido);
+    let b_date = formatCustomDate(selectedMeditacio.modositotta_datum_ido);
     console.log(a_date);
     console.log(b_date);
     document.getElementById("med-edit-section").innerHTML = `
@@ -917,13 +913,21 @@ async function deleteMed() {
     }
 }
 
-// Dátum-idő formázás saját függvénnyel
-function formatCustomDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Hónap 0-alapú, ezért +1
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
+function formatCustomDate(dateString) {
+  // Elválasztjuk a dátumot és időt
+  const [datePart, timePart] = dateString.split(" ");
+  const [year, month, day] = datePart.split(".").map(num => parseInt(num, 10));
+  const [hour, minute] = timePart.split(":").map(num => parseInt(num, 10));
 
-    return `${year}.${month}.${day}. ${hours}:${minutes}`;
+  // Létrehozunk egy új dátum objektumot
+  const date = new Date(year, month - 1, day, hour, minute);
+
+  // Formázás a kívánt formában: YYYY.MM.DD. HH:mm
+  const formattedYear = date.getFullYear();
+  const formattedMonth = String(date.getMonth() + 1).padStart(2, "0");
+  const formattedDay = String(date.getDate()).padStart(2, "0");
+  const formattedHours = String(date.getHours());
+  const formattedMinutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${formattedYear}.${formattedMonth}.${formattedDay}. ${formattedHours}:${formattedMinutes}`;
 }
