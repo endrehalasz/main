@@ -510,7 +510,7 @@ async function updateEventSection() {
             <tr>
                 <th>Dátum</th>
                 <th>Idő</th>
-                <th class="cim-col">Cím</th>
+                <th>Cím</th>
                 <th>Max</th>
                 <th>Jelen</th>
                 <th>Váró</th>
