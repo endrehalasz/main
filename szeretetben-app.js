@@ -510,7 +510,7 @@ async function updateEventSection() {
             <tr>
                 <th>Dátum</th>
                 <th>Idő</th>
-                <th class="cim-col>Cím</th>
+                <th class="cim-col">Cím</th>
                 <th>Max</th>
                 <th>Jelen</th>
                 <th>Váró</th>
@@ -522,7 +522,7 @@ async function updateEventSection() {
                 <tr data-id="${item.MED_ID}">
                     <td>${item.datum}</td>
                     <td>${item.ido}</td>
-                    <td class="cim-col>${item.cim}</td>
+                    <td class="cim-col">${item.cim}</td>
                     <td>${item.max_ember}</td>
                     <td>${item.jelentkezett}</td>
                     <td>${item.varolistan}</td>
