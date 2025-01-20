@@ -20,7 +20,6 @@
             display: flex;
             flex-direction: column;
         }
-        
         .header {
             text-align: center;
             padding: 10px;
@@ -31,7 +30,6 @@
             align-items: center;
             border: 1px solid black;
         }
-
         .header h2 {
             margin: 0;
             font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
@@ -42,18 +40,15 @@
             font-stretch: condensed;
             color: #052036;
         }
-
         .header p {
             margin: 10px;
             font-size: 1rem;
             text-shadow: 2px 2px 7px white;
         }
-
         .main-container {
             display: flex;
             flex-grow: 1;
         }
-
         .sidebar {
             width: 180px;
             background-color: #d9e6fa;
@@ -64,36 +59,29 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
             display: none;
         }
-        
         .sidebar.visible {
 		    display: block;
 		}
-
         .content {
             flex-grow: 1;
             padding: 20px;
             display: none;
         }
-        
         .content h3 {
             font-size: 16px;
         }
-        
         .content.visible {
 		    display: block;
 		}
-
         .content-section {
             font-size: 14px; /* Betűméret */
             line-height: 1; /* Sorköz */
             padding: 10px; /* Egy kis belső margó */
             display: none;
         }
-
         .content-section.visible {
             display: block;
         }
-
         .button-53 {
             background-color: #0da8bf;
             border: 1px solid #E5E7EB;
@@ -118,11 +106,9 @@
             -webkit-user-select: none;
             touch-action: manipulation;
         }
-
         .button-53:focus {
             outline: 2px;
         }
-
         .button-53:after {
             position: absolute;
             border: 2px solid #000000;
@@ -131,37 +117,30 @@
             width: calc(100% - 1px);
             height: calc(100% - 1px);
         }
-
         .button-53:hover {
             bottom: 2px;
             left: 3px;
             background-color: #0d6fbf;
         }
-        
         .button-53.hidden {
             display: none;
         }
-        
         .button-53.disabled {
             color: lightgray;
         }
-        
         .button-53.adminbutton {
             background-color: #269398;
             color: #000055;
         }
-        
         .button-53.adminbutton.disabled {
             background-color: #269398;
             color: lightgray;
         }
-        
         .button-53.adminbutton:hover {
             bottom: 2px;
             left: 2px;
             background-color: #265e96;
         }
-
         .button-51 {
             background-color: transparent;
             border: 1px solid #266DB6;
@@ -180,16 +159,13 @@
             cursor: pointer;
             height: 30px
         }
-
         .button-51:hover,
         .button-51:active {
             outline: 0;
         }
-
         .button-51:hover {
             background-color: purple;
         }
-
         .button-51:before {
             background-color: #D5EDF6;
             content: "";
@@ -201,17 +177,14 @@
             width: 100%;
             z-index: -1;
         }
-
         .button-51:hover:before {
             background-color: #6DCFF6;
         }
-        
         .button-group {
             display: flex;
             flex-direction: column; /* A gombokat egymás alá rendezi */
             gap: 3px; /* Kis távolság a gombok között */
         }
-        
         .profile-picture {
             width: 1.3cm;
             height: 1.3cm;
@@ -220,17 +193,14 @@
             display: none; /* Alapértelmezésben rejtve */
             overflow: hidden;
         }
-        
         .profile-picture img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
         .mobile-logout {
             display: none; /* Alapértelmezésben rejtve */
         }
-        
         .button-edit {
             background-color: #0da8bf;
             border: 1px solid #E5E7EB;
@@ -245,11 +215,9 @@
             width: auto;
             max-width: 180px;
         }
-        
         .button-edit:hover {
     	    background-color: #0d6fbf;
         }
-        
         .inputbox {
             color: black;
             padding: 3px;
@@ -259,13 +227,11 @@
             max-width: 100%; /* Reszponzív szélesség */
             margin-left: 80px
         }
-
         @media (min-width: 768px) {
             .button-51 {
                 padding: 16px 32px;
             }
         }
-            
         /* Mobilnézet (max. 768px szélességhez) */
         @media (max-width: 768px) {
             .header {
@@ -275,23 +241,19 @@
                 flex-wrap: nowrap;
                 justify-content: space-between;
             }
-        
             .header h2 {
                 font-size: 0.9rem;
                 margin-right: 5px; /* Tolja jobbra a többi elemtől */
 
             }
-        
             .header p {
                 font-size: 0.7rem;
                 margin-top: 5px;
             }
-            
             .header #user-status {
                 margin-left: 10px;
                 flex: 1;
             }
-            
             .header .profile-picture {
                 display: none;
                 width: 40px;
@@ -300,46 +262,41 @@
                 margin-right: 10px;
                 object-fit: cover;
             }
-            
             .header .button-51 {
                 margin-top: 10px;
                 align-self: flex-end;
                 display: none;
             }
-            
             .button-group {
                 display: none; /* Rejtve mobilnézetben */
             }
-            
             .sidebar {
                 display: block;
                 width: 35%;
                 display: none;
             }
-            
             .sidebar .mobile-logout {
                 display: block;
                 
             }
-        
             .button-53 {
                 padding: 5px 5px; /* A gombok magasságát csökkenti padding: */
                 font-size: 0.7rem;
                 line-height: 1.2rem; /* Optimalizált sor magasság */
                 width: 100%;
             }
-        
             .content {
                 padding: 5px;
                 font-size: 0.65rem;
             }
-            
+			.responsive-table th, .responsive-table td {
+				font-size: 12px;
+				padding: 6px;
+			}
         }
-        
         .responsive-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
             font-size: 12px;
             text-align: left;
         }
@@ -347,20 +304,38 @@
             background-color: #f2f2f2;
             border-bottom: 3px solid #ddd;
         }
-        .responsive-table th, .responsive-table td {
-            padding: 10px 10px;
-            border: 2px solid #ddd;
-        }
+		.responsive-table th, .responsive-table td {
+			border: 1px solid #444;
+			padding: 8px;
+			text-align: left;
+			font-size: 14px;
+		}
+		.responsive-table th {
+      		background-color: #f4f4f4;
+			white-space: nowrap;
+    	}
         .responsive-table tr {
             cursor: pointer;
             transition: background-color 0.3s;
         }
+		.responsive-table td {
+	      white-space: nowrap;
+	    }
         .responsive-table tr:hover {
             background-color: #f1f1f1;
         }
         .responsive-table tr.selected {
             background-color: #cce5ff;
         }
+		.responsive-table tbody tr {
+      		background-color: #fff;
+    	}
+		.responsive-table tbody tr:nth-child(even) {
+      		background-color: #f9f9f9;
+    	}
+	    .responsive-table tbody tr:hover {
+	      background-color: #eaeaea;
+	    }
     </style>
 </head>
 
