@@ -796,13 +796,9 @@ async function loadUjMedSection() {
 
 // betölti az meditáció szerkesztése section-t
 async function loadMedEditSection() {
-    
-    console.log("med-edit-section feltöltése...");
     const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
     let a_date = formatCustomDate(selectedMeditacio.letrehozta_datum_ido);
     let b_date = formatCustomDate(selectedMeditacio.modositotta_datum_ido);
-    console.log(a_date);
-    console.log(b_date);
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
         <input type="text" id="edit-meditacio-cime" name="edit-meditacio-cime" required value="${selectedMeditacio.cim}" class="inputbox"></h3>
@@ -828,7 +824,6 @@ async function loadMedEditSection() {
             <button class="button-edit" id="mentes-mededit-button" onclick="editMed()">Mentés</button>
         </div>
     `;
-    console.log("med-edit-section feltöltése kész");
 }
 
 // ellenőrzi az adatokat és létrehozza az új meditácit
