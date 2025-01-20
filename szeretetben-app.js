@@ -799,22 +799,23 @@ async function loadMedEditSection() {
     //const today = new Date();
     //const todayString = today.toISOString().split("T")[0]; // YYYY-MM-DD formátum
     console.log("med-edit-section feltöltése...");
+    const selectedMeditacio = myMed.find(item => item.MED_ID == String(medTable_selectedRow_medId));
     document.getElementById("med-edit-section").innerHTML = `
         <h3><label for="edit-meditacio-cime">Meditáció címe:</label>
-        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].cim}"></h3>
+        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${selectedMeditacio.cim}"></h3>
         <p><label for="edit-meditacio-datuma">Meditáció dátuma:</label>
-        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${myMed[medTable_selectedRow_medId].datum}"></p>
+        <input type="date" id="edit-meditacio-datuma" name="meditacio-datuma" required value="${selectedMeditacio.datum}"></p>
         
         <p><label for="edit-meditacio-ideje">Meditáció ideje:</label>
-        <input type="time" id="meditacio-ideje" name="meditacio-ideje" required value="${myMed[medTable_selectedRow_medId].ido}"></p>
+        <input type="time" id="meditacio-ideje" name="meditacio-ideje" required value="${selectedMeditacio.ido}"></p>
         
         <p><label for="edit-meditacio-max-ember">Maximális létszám:</label>
-        <input type="number" id="max-letszam" name="max-letszam" min="1" max="100" required value="${myMed[medTable_selectedRow_medId].max_ember}"></p>
+        <input type="number" id="max-letszam" name="max-letszam" min="1" max="100" required value="${selectedMeditacio.max_ember}"></p>
 
-        <p><label for="edit-meditacio-teaser">Teaser: ${myMed[medTable_selectedRow_medId].teaser}</label></p>
-        <p><label for="edit-meditacio-message">Üzenet: ${myMed[medTable_selectedRow_medId].message}</label></p>
-        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${myMed[medTable_selectedRow_medId].letrehozta_datum_ido} ${myMed[medTable_selectedRow_medId].letrehozta}</label></p>
-        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${myMed[medTable_selectedRow_medId].modositotta_datum_ido} ${myMed[medTable_selectedRow_medId].modositotta}</label></p>
+        <p><label for="edit-meditacio-teaser">Teaser: ${selectedMeditacio.teaser}</label></p>
+        <p><label for="edit-meditacio-message">Üzenet: ${selectedMeditacio.message}</label></p>
+        <p><label for="edit-meditacio-letrehozta">Létrehozta: ${selectedMeditacio.letrehozta_datum_ido} ${selectedMeditacio.letrehozta}</label></p>
+        <p><label for="edit-meditacio-modositotta">Utolsó módosítás: ${selectedMeditacio.modositotta_datum_ido} ${selectedMeditacio.modositotta}</label></p>
 
         <div style="margin-top: 10px;">
             <button class="button-edit" id="vissza-mededit-button" onclick="showSection('med-event-section')">Vissza</button>
